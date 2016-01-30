@@ -5,6 +5,11 @@
 
   MiniJuego02.prototype = {
     create: function () {
+      // animation background
+      var papel = this.game.add.sprite(0, 0, 'background');
+      var desplegar = papel.animations.add('desplegar');
+      papel.animations.play('desplegar', 8, false);
+
       this.nexus = this.game.add.sprite(87, 14, 'nexusback');
       this.aceptar = this.game.add.sprite(147, 500, 'aceptar');
       this.posponer = this.game.add.sprite(320, 500, 'posponer');
