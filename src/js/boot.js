@@ -9,6 +9,28 @@
       this.load.image('bedroom01', 'assets/bedroom01.png');
       this.load.image('toki', 'assets/toki.png');
       this.load.spritesheet('background', 'assets/backgroundanimation.png', 600, 800, 4);
+      this.load.image('number1', 'assets/number1.png');
+      this.load.image('number2', 'assets/number2.png');
+      this.load.image('number3', 'assets/number3.png');
+      this.load.image('number4', 'assets/number4.png');
+      this.load.image('number5', 'assets/number5.png');
+      this.load.image('number6', 'assets/number6.png');
+      this.load.image('number7', 'assets/number7.png');
+      this.load.image('number8', 'assets/number8.png');
+      this.load.image('number9', 'assets/number9.png');
+      this.load.image('number0', 'assets/number0.png');
+      this.load.image('dot', 'assets/dot.png');
+      this.load.image('number1a', 'assets/number1a.png');
+      this.load.image('number2a', 'assets/number2a.png');
+      this.load.image('number3a', 'assets/number3a.png');
+      this.load.image('number4a', 'assets/number4a.png');
+      this.load.image('number5a', 'assets/number5a.png');
+      this.load.image('number6a', 'assets/number6a.png');
+      this.load.image('number7a', 'assets/number7a.png');
+      this.load.image('number8a', 'assets/number8a.png');
+      this.load.image('number9a', 'assets/number9a.png');
+      this.load.image('number0a', 'assets/number0a.png');
+      this.load.image('dota', 'assets/dota.png');
     },
 
     create: function () {
