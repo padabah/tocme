@@ -59,7 +59,7 @@
     },
 
     onInputDown: function () {
-      this.game.state.start('menu');
+      this.game.state.start('minijuego02');
     },
 
     playerChangeScale: function(velocityScale){
@@ -69,22 +69,22 @@
 
     createWalls: function(){
       this.wall0 = this.game.add.sprite(0, 0, '1px');
-      this.wall0.scale.setTo(800, 72);
+      this.wall0.scale.setTo(600, 100);
       this.game.physics.enable(this.wall0, Phaser.Physics.ARCADE);
       this.wall0.body.immovable = true;
 
-      this.wall1 = this.game.add.sprite(0, 73, '1px');
-      this.wall1.scale.setTo(68, 473);
+      this.wall1 = this.game.add.sprite(0, 100, '1px');
+      this.wall1.scale.setTo(68, 634);
       this.game.physics.enable(this.wall1, Phaser.Physics.ARCADE);
       this.wall1.body.immovable = true;
 
-      this.wall2 = this.game.add.sprite(0, 548, '1px');
-      this.wall2.scale.setTo(800, 55);
+      this.wall2 = this.game.add.sprite(0, 735, '1px');
+      this.wall2.scale.setTo(600, 66);
       this.game.physics.enable(this.wall2, Phaser.Physics.ARCADE);
       this.wall2.body.immovable = true;
 
-      this.wall3 = this.game.add.sprite(720, 73, '1px');
-      this.wall3.scale.setTo(80, 473);
+      this.wall3 = this.game.add.sprite(538, 100, '1px');
+      this.wall3.scale.setTo(64, 634);
       this.game.physics.enable(this.wall3, Phaser.Physics.ARCADE);
       this.wall3.body.immovable = true;
     }
