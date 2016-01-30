@@ -8,9 +8,11 @@
       // Variable para habilitar el movimiento del personaje
       this.canMove = true;
 
-      this.playerVelocity = 300;
+      this.playerVelocity = 500;
       this.playerScaleVelocity = 0.002;
       this.playerScale = 0.2;
+
+      this.tween;
 
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -19,8 +21,7 @@
       //Paredes
       this.createWalls();
 
-      //this.player = this.game.add.sprite(100, 100, 'toki');
-      this.player = this.game.add.sprite(90, 303, 'toki_sprite');
+      this.player = this.game.add.sprite(90, 303, 'toki_sprite', 3);
       this.player.scale.setTo(0.25, 0.25);
       this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
 
@@ -29,6 +30,7 @@
       this.player.animations.add('back', [0, 1, 2], 10, true);
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
+      this.game.input.onDown.add(this.moveSprite, this)
     },
 
     update: function () {
@@ -37,7 +39,8 @@
       this.game.physics.arcade.collide(this.player, this.wall2);
       this.game.physics.arcade.collide(this.player, this.wall3);
 
-      this.playerMovements(this.player);
+      // Controlamos el movimiento
+      //this.playerMovements(this.player);
     },
 
     render: function(){
@@ -128,6 +131,37 @@
       this.wall3.scale.setTo(64, 634);
       this.game.physics.enable(this.wall3, Phaser.Physics.ARCADE);
       this.wall3.body.immovable = true;
+    },
+
+    moveSprite: function (pointer) {
+      // Comprobamos si se está ejecutando un tween anterior
+      if ( this.tween && this.tween.isRunning ) {
+        this.tween.stop();
+      }
+
+      // Calculamos la duración en función de la distancia para que siempre sea la misma
+      var duration = (this.game.physics.arcade.distanceToPointer(this.player, pointer) / 300) * this.playerVelocity;
+
+      // Añadimos un tween para realizar el movimiento
+      this.tween = this.game.add.tween(this.player).to({
+          x: pointer.x,
+          y: pointer.y
+        },
+        duration,
+        Phaser.Easing.Linear.None,
+        true
+      );
+
+      this.tween.onStart.add(function () {
+        // Activamos la animación correspondiente
+        this.player.animations.play((this.player.position.y < pointer.y ? 'sides' : 'back'));
+      }, this);
+
+      // Cuando termina terminamos la animación y volvemos al sprite inicial
+      this.tween.onComplete.add(function () {
+        this.player.frame = 3;
+        this.player.animations.stop()
+      }, this);
     }
   };
 
