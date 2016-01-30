@@ -10,6 +10,9 @@
       this.load.image('toki', 'assets/toki.png');
       this.load.image('1px', 'assets/1px.png');
       this.load.image('nexusback', 'assets/nexusback.png');
+      this.load.image('aceptar', 'assets/aceptar.png');
+      this.load.image('posponer', 'assets/posponer.png');
+      this.load.image('alarma', 'assets/alarma.png');
     },
 
     create: function () {

@@ -19,7 +19,7 @@
     },
 
     onDown: function () {
-      this.game.state.start('game');
+      this.game.state.start('minijuego02');
     }
   };
 
