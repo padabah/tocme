@@ -12,56 +12,44 @@
       this.playerScaleVelocity = 0.002;
       this.playerScale = 0.2;
 
+      this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
       this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
+      
+      //Paredes
+      this.createWalls();
 
-      this.wall = this.game.add.sprite(0, 300, null);
-      this.wall2 = this.game.add.sprite(0, 300, null);
-      this.wall.scale.setTo(5, 1);
-      this.wall2.scale.setTo(5, 1);
-
-
-      this.game.physics.startSystem(Phaser.Physics.P2JS);
-      this.input.onDown.add(this.onInputDown, this);
-
+      //this.player = this.game.add.sprite(100, 100, 'toki');
       this.player = this.game.add.sprite(90, 303, 'toki_sprite');
-      this.player.scale.setTo(this.playerScale);
-      this.game.physics.p2.enable(this.player, true);
-      this.game.physics.p2.enable(this.wall, true);
-      this.game.physics.p2.enable(this.wall2, true);
-      this.wall2.body.immovable = true;
-      this.wall2.body.static = true;
+      this.player.scale.setTo(0.25, 0.25);
+      this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
 
       // Añadimos las animaciones
       this.player.animations.add('sides', [3, 4, 5], 10, true);
       this.player.animations.add('back', [0, 1, 2], 10, true);
 
-      this.player.body.setZeroDamping();
-      this.player.body.fixedRotation = true;
-      this.player.body.setCircle(28);
-      this.player.body.offset.setTo(0, 1000);
-
-      /*this.bounds = new Phaser.Polygon([new Phaser.Point(72, 303), new Phaser.Point(505, 303),
-                                        new Phaser.Point(600, 579), new Phaser.Point(600, 800),
-                                        new Phaser.Point(0, 800), new Phaser.Point(0, 528), new Phaser.Point(72, 303) ]);
-
-
-      this.graphics = this.game.add.graphics(0, 0);
-      this.graphics.lineStyle(1, 0xffd900, 1);
-      this.graphics.drawPolygon(this.bounds.points);*/
-
       this.cursors = this.game.input.keyboard.createCursorKeys();
     },
 
     update: function () {
-      this.player.body.setZeroVelocity();
+      this.game.physics.arcade.collide(this.player, this.wall0);
+      this.game.physics.arcade.collide(this.player, this.wall1);
+      this.game.physics.arcade.collide(this.player, this.wall2);
+      this.game.physics.arcade.collide(this.player, this.wall3);
+
       this.playerMovements(this.player);
     },
 
     render: function(){
+      this.game.debug.body(this.wall0);
+      this.game.debug.body(this.wall1);
+      this.game.debug.body(this.wall2);
+      this.game.debug.body(this.wall3);
+      this.game.debug.body(this.player);
     },
 
     onInputDown: function () {
-      this.game.state.start('mini1');
+      this.game.state.start('minijuego02');
     },
 
     playerChangeScale: function(velocityScale){
@@ -90,34 +78,56 @@
       if ((holdu || holdd || holdr || holdl) && this.canMove ) {
         if (holdu) {
           // UP
-          player.body.moveUp(this.playerVelocity);
-          this.playerChangeScale(-this.playerScaleVelocity);
+          player.body.velocity.y = -this.playerVelocity;
 
           // Activamos la animación
           player.animations.play('back');
         } else if (holdd) {
           //DOWN
-          player.body.moveDown(this.playerVelocity);
-          this.playerChangeScale(this.playerScaleVelocity);
+          player.body.velocity.y = this.playerVelocity;
 
           // Activamos la animación
           player.animations.play('sides');
         } else if (holdr) {
           //RIGHT
-          player.body.moveRight(this.playerVelocity);
+          player.body.velocity.x = this.playerVelocity;
 
           // Activamos la animación
           player.animations.play('sides');
         } else if (holdl) {
           //LEFT
-          player.body.moveLeft(this.playerVelocity);
+          player.body.velocity.x = -this.playerVelocity;
 
           // Activamos la animación
           player.animations.play('sides');
         }
       } else {
         this.player.frame = 3;
+        player.body.velocity.x = 0;
+        player.body.velocity.y = 0;
       }
+    },
+
+    createWalls: function(){
+      this.wall0 = this.game.add.sprite(0, 0, '1px');
+      this.wall0.scale.setTo(600, 100);
+      this.game.physics.enable(this.wall0, Phaser.Physics.ARCADE);
+      this.wall0.body.immovable = true;
+
+      this.wall1 = this.game.add.sprite(0, 100, '1px');
+      this.wall1.scale.setTo(68, 634);
+      this.game.physics.enable(this.wall1, Phaser.Physics.ARCADE);
+      this.wall1.body.immovable = true;
+
+      this.wall2 = this.game.add.sprite(0, 735, '1px');
+      this.wall2.scale.setTo(600, 66);
+      this.game.physics.enable(this.wall2, Phaser.Physics.ARCADE);
+      this.wall2.body.immovable = true;
+
+      this.wall3 = this.game.add.sprite(538, 100, '1px');
+      this.wall3.scale.setTo(64, 634);
+      this.game.physics.enable(this.wall3, Phaser.Physics.ARCADE);
+      this.wall3.body.immovable = true;
     }
   };
 

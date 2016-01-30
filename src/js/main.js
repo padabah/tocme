@@ -7,8 +7,10 @@ window.addEventListener('load', function () {
   game.state.add('preloader', ns.Preloader);
   game.state.add('menu', ns.Menu);
   game.state.add('mini1', ns.Mini1);
+  game.state.add('minijuego02', ns.Minijuego02);
   game.state.add('game', ns.Game);
 
   /* yo phaser:state new-state-files-put-here */
+
   game.state.start('boot');
 }, false);

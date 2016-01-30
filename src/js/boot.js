@@ -10,6 +10,8 @@
       this.load.image('toki', 'assets/toki.png');
       this.load.spritesheet('background', 'assets/backgroundanimation.png', 600, 800, 4);
       this.load.spritesheet('toki_sprite', 'assets/Toki-Sprite.png', 380, 462);
+      this.load.image('1px', 'assets/1px.png');
+      this.load.image('nexusback', 'assets/nexusback.png');
     },
 
     create: function () {
