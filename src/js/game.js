@@ -19,7 +19,7 @@
 
 
       this.game.physics.startSystem(Phaser.Physics.P2JS);
-      
+
 
       this.input.onDown.add(this.onInputDown, this);
 
@@ -44,7 +44,7 @@
       this.graphics = this.game.add.graphics(0, 0);
       this.graphics.lineStyle(1, 0xffd900, 1);
       this.graphics.drawPolygon(this.bounds.points);*/
-      
+
       this.cursors = this.game.input.keyboard.createCursorKeys();
     },
 
@@ -61,10 +61,12 @@
       if (this.cursors.up.isDown) {
         this.player.body.moveUp(this.playerVelocity);
         this.playerChangeScale(-this.playerScaleVelocity);
+
       }
       else if (this.cursors.down.isDown){
         this.player.body.moveDown(this.playerVelocity);
         this.playerChangeScale(this.playerScaleVelocity);
+        this.game.state.start('mini1');
       }
     },
 
@@ -72,7 +74,7 @@
     },
 
     onInputDown: function () {
-      this.game.state.start('menu');
+      this.game.state.start('mini1');
     },
 
     playerChangeScale: function(velocityScale){

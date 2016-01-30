@@ -8,6 +8,7 @@
       this.load.image('preloader', 'assets/preloader.gif');
       this.load.image('bedroom01', 'assets/bedroom01.png');
       this.load.image('toki', 'assets/toki.png');
+      this.load.spritesheet('background', 'assets/backgroundanimation.png', 600, 800, 4);
     },
 
     create: function () {
@@ -33,4 +34,3 @@
   window['tocme'] = window['tocme'] || {};
   window['tocme'].Boot = Boot;
 }());
-
