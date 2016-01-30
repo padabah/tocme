@@ -10,6 +10,8 @@
       });
       text.anchor.set(0.5);
       this.input.onDown.add(this.onDown, this);
+      //Auto pasar
+      this.game.state.start('game');
     },
 
     update: function () {
