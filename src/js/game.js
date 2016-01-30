@@ -12,7 +12,7 @@
 
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-      this.game.add.tileSprite(0, 0, 800, 600, 'bedroom01');
+      this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
       
       //Paredes
       this.createWalls();
@@ -51,11 +51,11 @@
     },
 
     render: function(){
-      /*this.game.debug.body(this.wall0);
+      this.game.debug.body(this.wall0);
       this.game.debug.body(this.wall1);
       this.game.debug.body(this.wall2);
       this.game.debug.body(this.wall3);
-      this.game.debug.body(this.player);*/
+      this.game.debug.body(this.player);
     },
 
     onInputDown: function () {
@@ -80,7 +80,7 @@
 
       this.wall2 = this.game.add.sprite(0, 548, '1px');
       this.wall2.scale.setTo(800, 55);
-      this.game.physics.enable(this.wall2, Phaser.Physics.ARCADE);7
+      this.game.physics.enable(this.wall2, Phaser.Physics.ARCADE);
       this.wall2.body.immovable = true;
 
       this.wall3 = this.game.add.sprite(720, 73, '1px');
