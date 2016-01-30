@@ -8,11 +8,14 @@
       this.load.image('preloader', 'assets/preloader.gif');
       this.load.image('bedroom01', 'assets/bedroom01.png');
       this.load.image('toki', 'assets/toki.png');
+      this.load.spritesheet('background', 'assets/backgroundanimation.png', 600, 800, 4);
+      this.load.spritesheet('toki_sprite', 'assets/Toki-Sprite.png', 380, 462);
       this.load.image('1px', 'assets/1px.png');
       this.load.image('nexusback', 'assets/nexusback.png');
       this.load.image('aceptar', 'assets/aceptar.png');
       this.load.image('posponer', 'assets/posponer.png');
-      this.load.image('alarma', 'assets/alarma.png');
+      this.load.spritesheet('alarma', 'assets/alarma.png', 265, 115, 3);
+      this.load.spritesheet('relojSonando', 'assets/relojSonando.png', 192, 150, 2);
     },
 
     create: function () {
@@ -38,4 +41,3 @@
   window['tocme'] = window['tocme'] || {};
   window['tocme'].Boot = Boot;
 }());
-
