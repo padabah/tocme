@@ -6,6 +6,8 @@
   Boot.prototype = {
     preload: function () {
       this.load.image('preloader', 'assets/preloader.gif');
+      this.load.image('bedroom01', 'assets/bedroom01.png');
+      this.load.image('toki', 'assets/toki.png');
     },
 
     create: function () {
