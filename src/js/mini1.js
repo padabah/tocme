@@ -92,7 +92,7 @@ Mini1.prototype = {
 
     this.number1.events.onInputDown.add(function(){
         this.number1.visible = false;
-        this.number1a.visible = true
+        this.number1a.visible = true;
     }, this);
 
     this.number1a.events.onInputDown.add(function(){
@@ -102,7 +102,7 @@ Mini1.prototype = {
 
     this.number2.events.onInputDown.add(function(){
         this.number2.visible = false;
-        this.number2a.visible = true
+        this.number2a.visible = true;
     }, this);
 
     this.number2a.events.onInputDown.add(function(){
@@ -112,7 +112,7 @@ Mini1.prototype = {
 
     this.number3.events.onInputDown.add(function(){
         this.number3.visible = false;
-        this.number3a.visible = true
+        this.number3a.visible = true;
     }, this);
 
     this.number3a.events.onInputDown.add(function(){
@@ -132,7 +132,7 @@ Mini1.prototype = {
 
     this.number5.events.onInputDown.add(function(){
         this.number5.visible = false;
-        this.number5a.visible = true
+        this.number5a.visible = true;
     }, this);
 
     this.number5a.events.onInputDown.add(function(){
@@ -142,7 +142,7 @@ Mini1.prototype = {
 
     this.number6.events.onInputDown.add(function(){
         this.number6.visible = false;
-        this.number6a.visible = true
+        this.number6a.visible = true;
     }, this);
 
     this.number6a.events.onInputDown.add(function(){
@@ -152,7 +152,7 @@ Mini1.prototype = {
 
     this.number7.events.onInputDown.add(function(){
         this.number7.visible = false;
-        this.number7a.visible = true
+        this.number7a.visible = true;
     }, this);
 
     this.number7a.events.onInputDown.add(function(){
@@ -162,7 +162,7 @@ Mini1.prototype = {
 
     this.number8.events.onInputDown.add(function(){
         this.number8.visible = false;
-        this.number8a.visible = true
+        this.number8a.visible = true;
     }, this);
 
     this.number8a.events.onInputDown.add(function(){
@@ -172,7 +172,7 @@ Mini1.prototype = {
 
     this.number9.events.onInputDown.add(function(){
         this.number9.visible = false;
-        this.number9a.visible = true
+        this.number9a.visible = true;
     }, this);
 
     this.number9a.events.onInputDown.add(function(){
@@ -182,7 +182,7 @@ Mini1.prototype = {
 
     this.number0.events.onInputDown.add(function(){
         this.number0.visible = false;
-        this.number0a.visible = true
+        this.number0a.visible = true;
     }, this);
 
     this.number0a.events.onInputDown.add(function(){
@@ -192,7 +192,7 @@ Mini1.prototype = {
 
     this.dot.events.onInputDown.add(function(){
         this.dot.visible = false;
-        this.dota.visible = true
+        this.dota.visible = true;
     }, this);
 
     this.dota.events.onInputDown.add(function(){

@@ -8,12 +8,6 @@
       // Variable para habilitar el movimiento del personaje
       this.canMove = true;
 
-      this.playerVelocity = 500;
-      this.playerScaleVelocity = 0.002;
-      this.playerScale = 0.2;
-
-      this.tween;
-
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
       this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
@@ -21,8 +15,14 @@
       //Paredes
       this.createWalls();
 
+      // Jugardor
       this.player = this.game.add.sprite(90, 303, 'toki_sprite', 3);
       this.player.scale.setTo(0.25, 0.25);
+
+      this.player.playerVelocity = 300;
+      this.player.initialPlayerFrame = 3;
+
+      // Activamos las físicas en el player
       this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
 
       // Añadimos las animaciones
@@ -34,10 +34,16 @@
     },
 
     update: function () {
-      this.game.physics.arcade.collide(this.player, this.wall0);
-      this.game.physics.arcade.collide(this.player, this.wall1);
-      this.game.physics.arcade.collide(this.player, this.wall2);
-      this.game.physics.arcade.collide(this.player, this.wall3);
+      if ( this.game.physics.arcade.collide(this.player, this.wall0) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.wall1) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.wall2) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.wall3) )
+        this.stopMovingPlayer(this.player);
+
+      this.playerMovements(this.player);
     },
 
     render: function(){
@@ -50,11 +56,6 @@
 
     onInputDown: function () {
       this.game.state.start('minijuego02');
-    },
-
-    playerChangeScale: function(velocityScale){
-      this.playerScale += velocityScale;
-      this.player.scale.setTo(this.playerScale);
     },
 
     createWalls: function(){
@@ -79,35 +80,104 @@
       this.wall3.body.immovable = true;
     },
 
+    // Función para calcular la posición a la que tiene que ir el player
     moveSprite: function (pointer) {
-      // Comprobamos si se está ejecutando un tween anterior
-      if ( this.tween && this.tween.isRunning ) {
-        this.tween.stop();
+      // Almacenamos la nueva posición del jugador
+      this.player.newPositionX = parseInt(pointer.x);
+      this.player.newPositionY = parseInt(pointer.y);
+
+      // Variables de control para ver la dirección
+      this.player.movingDown = ( this.player.newPositionY > this.player.body.y ? true : false );
+      this.player.movingRight = ( this.player.newPositionX > this.player.body.x ? true : false );
+
+      // Variables de control para ver si se está moviendo
+      this.player.stopMovingY = false;
+      this.player.stopMovingX = false;
+      this.player.playerMoving = true;
+
+      // Declaramos la siguiente animación
+      this.player.nextAnimation = ( this.player.movingDown ? 'sides' : 'back' );
+    },
+
+    // Función para controlar el movimiento del player
+    playerMovements: function(player) {
+      // Almacenamos la posición actual del player
+      var playerX = parseInt(player.body.position.x);
+      var playerY = parseInt(player.body.position.y);
+
+      // Comprobamos si se tiene que parar o seguir
+      if ( player.stopMovingX && player.stopMovingY && player.playerMoving ) {
+        this.stopMovingPlayer(player);
+      } else {
+        if ( playerX == player.newPositionX ) {
+          // Comprobamos si ya ha llegado a la posición de la X
+          player.stopMovingX = true;
+          player.body.velocity.x = 0;
+        } else if ( playerY == player.newPositionY ) {
+          // Comprobamos si ya ha llegado a la posición de la Y
+          player.stopMovingY = true;
+          player.body.velocity.y = 0;
+        } else if ( player.playerMoving ) {
+          // Seguimos moviendo al player
+
+          // Comprobamos la dirección de la X
+          if (player.newPositionX < player.position.x) {
+            // LEFT
+
+            // Comprobamos si nos hemos pasado
+            if (player.movingRight) {
+              player.stopMovingX = true;
+              player.body.velocity.x = 0;
+            } else
+              player.body.velocity.x = -player.playerVelocity;
+          } else {
+            // RIGHT
+
+            if (player.movingRight)
+              player.body.velocity.x = player.playerVelocity;
+            else {
+              player.stopMovingX = true;
+              player.body.velocity.x = 0;
+            }
+          }
+
+          // Comprobamos la dirección de la Y
+          if (player.newPositionY < player.position.y) {
+            // UP
+
+            // Comprobamos si nos hemos pasado
+            if (player.movingDown) {
+              player.stopMovingY = true;
+              player.body.velocity.y = 0;
+            } else
+              player.body.velocity.y = -player.playerVelocity;
+          } else if (player.newPositionY > player.position.y) {
+            // DOWN
+
+            if(player.movingDown)
+              player.body.velocity.y = player.playerVelocity;
+            else {
+              player.stopMovingY = true;
+              player.body.velocity.y = 0;
+            }
+          }
+
+          // Activamos la animación
+          player.animations.play(player.nextAnimation);
+        }
       }
+    },
 
-      // Calculamos la duración en función de la distancia para que siempre sea la misma
-      var duration = (this.game.physics.arcade.distanceToPointer(this.player, pointer) / 300) * this.playerVelocity;
+    // Función para terminar el movimiento del player
+    stopMovingPlayer: function (player) {
+      player.playerMoving = false;
+      player.stopMovingX = true;
+      player.stopMovingY = true;
 
-      // Añadimos un tween para realizar el movimiento
-      this.tween = this.game.add.tween(this.player).to({
-          x: pointer.x,
-          y: pointer.y
-        },
-        duration,
-        Phaser.Easing.Linear.None,
-        true
-      );
-
-      this.tween.onStart.add(function () {
-        // Activamos la animación correspondiente
-        this.player.animations.play((this.player.position.y < pointer.y ? 'sides' : 'back'));
-      }, this);
-
-      // Cuando termina terminamos la animación y volvemos al sprite inicial
-      this.tween.onComplete.add(function () {
-        this.player.frame = 3;
-        this.player.animations.stop()
-      }, this);
+      player.frame = player.initialPlayerFrame;
+      player.body.velocity.x = 0;
+      player.body.velocity.y = 0;
+      player.animations.stop();
     }
   };
 

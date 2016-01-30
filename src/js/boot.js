@@ -14,6 +14,7 @@
       this.load.image('1px', 'assets/1px.png');
       this.load.image('nexusback', 'assets/nexusback.png');
 
+      // Imagenes para la pantalla con números
       this.load.image('number1', 'assets/number1.png');
       this.load.image('number2', 'assets/number2.png');
       this.load.image('number3', 'assets/number3.png');
