@@ -31,6 +31,7 @@
       this.load.image('number9a', 'assets/number9a.png');
       this.load.image('number0a', 'assets/number0a.png');
       this.load.image('dota', 'assets/dota.png');
+      this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     },
 
     create: function () {
