@@ -15,13 +15,19 @@
       
       this.input.onDown.add(this.onInputDown, this);
 
-      this.player = this.game.add.sprite(20, 30, 'toki');
+      this.lines = [new Phaser.Line(72, 303, 0, 528),
+                    new Phaser.Line(72, 303, 505, 303),
+                    new Phaser.Line(505, 303, 600, 579)]
+
+      this.player = this.game.add.sprite(90, 303, 'toki');
       this.player.scale.setTo(this.playerScale);
       this.game.physics.p2.enable(this.player, true);
 
       this.player.body.setZeroDamping();
       this.player.body.fixedRotation = true;
       this.player.body.setCircle(28);
+
+      
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
     },
@@ -43,6 +49,12 @@
       else if (this.cursors.down.isDown){
         this.player.body.moveDown(this.playerVelocity);
         this.playerChangeScale(this.playerScaleVelocity);
+      }
+    },
+
+    render: function(){
+      for(var l in this.lines){
+        this.game.debug.geom(this.lines[l]);
       }
     },
 
