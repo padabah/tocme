@@ -38,9 +38,6 @@
       this.game.physics.arcade.collide(this.player, this.wall1);
       this.game.physics.arcade.collide(this.player, this.wall2);
       this.game.physics.arcade.collide(this.player, this.wall3);
-
-      // Controlamos el movimiento
-      //this.playerMovements(this.player);
     },
 
     render: function(){
@@ -58,57 +55,6 @@
     playerChangeScale: function(velocityScale){
       this.playerScale += velocityScale;
       this.player.scale.setTo(this.playerScale);
-    },
-
-    // Función para controlar el móvimiento del jugardor que le pasamos por parámetro
-    playerMovements: function(player) {
-      // Declaración de variables para el control del movimiento
-      var holdd = ( this.cursors.down.isDown ? true : false );
-      var holdu = ( this.cursors.up.isDown ? true : false );
-      var holdr = ( this.cursors.right.isDown ? true : false );
-      var holdl = ( this.cursors.left.isDown ? true : false );
-
-      // Cancelamos las superposiciones de teclas
-      if ( holdu && holdd ) {
-        holdu = holdd = false;
-      }
-
-      if ( holdr && holdl ) {
-        holdr = holdl = false;
-      }
-
-      // Controlamos si se ha pulsado alguna letra y se puede mover
-      if ((holdu || holdd || holdr || holdl) && this.canMove ) {
-        if (holdu) {
-          // UP
-          player.body.velocity.y = -this.playerVelocity;
-
-          // Activamos la animación
-          player.animations.play('back');
-        } else if (holdd) {
-          //DOWN
-          player.body.velocity.y = this.playerVelocity;
-
-          // Activamos la animación
-          player.animations.play('sides');
-        } else if (holdr) {
-          //RIGHT
-          player.body.velocity.x = this.playerVelocity;
-
-          // Activamos la animación
-          player.animations.play('sides');
-        } else if (holdl) {
-          //LEFT
-          player.body.velocity.x = -this.playerVelocity;
-
-          // Activamos la animación
-          player.animations.play('sides');
-        }
-      } else {
-        this.player.frame = 3;
-        player.body.velocity.x = 0;
-        player.body.velocity.y = 0;
-      }
     },
 
     createWalls: function(){
