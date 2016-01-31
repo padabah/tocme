@@ -82,7 +82,7 @@
     },
 
     finOK : function(){
-      this.text.text = "OK";
+      this.game.state.start('game', true, false, minijuego2);
     }
   };
 
