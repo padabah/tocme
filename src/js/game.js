@@ -146,7 +146,7 @@
 
     logrosCompletados: function(){
         for(var i = 0; i< logros.length; i++){
-          if(logros[i] == 4 || logros[i] <= 0){
+          if(i != 4 && logros[i] <= 0){
             return false;
           }
         }
