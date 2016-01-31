@@ -19,14 +19,6 @@
 
       this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
 
-      //Añadimos los sprites para el escenario
-      /*this.player_bed = this.game.add.sprite(68, 98, 'bed_player');
-      this.player_bed.scale.setTo(0.23, 0.23);
-
-      this.mesa = this.game.add.sprite(534, 80, 'mesa');
-      this.mesa.rotation = 1.55;
-      this.mesa.scale.setTo(0.50, 0.50);*/
-
       //Paredes y objetos de la habitación
       this.createWalls();
       this.createSolidObjects();
@@ -48,7 +40,6 @@
       this.player.animations.add('back', [0, 1, 2], 10, true);
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
-      //this.game.input.onDown.add(this.animateSprite, this)
     },
 
     update: function(){
@@ -72,12 +63,14 @@
 
       this.playerMovements(this.player);
 
-      for(var i in estadosViables){
-        if (minijuego2 == estadosViables[i]){
-          //this.game.state.start(minijuego2.state_name);
-        }
-      }
-
+      // Controlamos cual es el siguiente estado
+      // for(var i in estadosViables){
+      //   if (minijuego2 == estadosViables[i]){
+      //     this.game.time.events.add(Phaser.Timer.SECOND * 4, this.game.state.start(minijuego2.state_name), this);
+      //   } else if (minijuego1 == estadosViables[i]){
+      //     this.game.state.start(minijuego1.state_name);
+      //   }
+      // }
     },
 
     render: function(){
@@ -144,7 +137,6 @@
     playerMovements: function(player) {
       if (this.game.input.mousePointer.isDown){
         this.goto = new Phaser.Rectangle(this.game.input.x, this.game.input.y, 2, 2);
-        console.log(this.goto);
       }
 
       //if (!Phaser.Rectangle.contains(this.player.body, this.game.goto.x, this.game.goto.y)){
