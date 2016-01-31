@@ -71,6 +71,9 @@
       this.seleccionado = true;
       this.aceptar.visible = false;
       this.posponer.visible = false;
+       if (this.counter == (this.numFrames-1)){
+        this.finKO();
+      }
     },
 
     checkLastNowMinutes: function(minutesDiff){
