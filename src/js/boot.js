@@ -7,6 +7,7 @@
     preload: function () {
       this.load.image('preloader', 'assets/preloader.gif');
       this.load.image('bedroom01', 'assets/bedroom_yellow.png');
+      this.load.image('bedroomFull', 'assets/bedroom_full.png');
       this.load.image('bed_player', 'assets/player_cama.png');
       this.load.image('mesa', 'assets/mesa.png');
       this.load.image('toki', 'assets/toki.png');

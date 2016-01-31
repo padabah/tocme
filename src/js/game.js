@@ -17,7 +17,12 @@
 
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-      this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
+      this.game.add.tileSprite(0, 0, 1452, 1746, 'bedroomFull');
+      this.game.world.setBounds(0, 0, 1452, 1746)
+
+      this.ratio = 1452 / 600;
+
+      //800
 
       //Añadimos los sprites para el escenario
       /*this.player_bed = this.game.add.sprite(68, 98, 'bed_player');
@@ -28,33 +33,25 @@
       this.mesa.scale.setTo(0.50, 0.50);*/
 
       //Paredes y objetos de la habitación
+      this.actions = [];
       this.createWalls();
       this.createSolidObjects();
 
       // Jugardor
       this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
 
-      this.actions = [];
-
-      this.actionArmario = this.game.add.sprite(60, 500, 'exclamation');
-      this.actionArmario.alpha = 0;
-      this.actions.push(this.actionArmario);
-
-      this.actionMesa = this.game.add.sprite(490, 270, 'exclamation');
-      this.actionMesa.alpha = 0;
-      this.actions.push(this.actionMesa);
-
-      this.actionLampara = this.game.add.sprite(180, 60, 'exclamation');
-      this.actionLampara.alpha = 0;
-      this.actions.push(this.actionLampara);
 
 
-      this.player.scale.setTo(0.25, 0.25);
+
+
+      this.player.scale.setTo(0.4, 0.4);
 
       this.player.playerVelocity = 300;
       this.player.initialPlayerFrame = 3;
       this.player.anchor.x = 0.5;
       this.player.anchor.y = 0.5;
+
+      this.game.camera.follow(this.player);
 
       // Activamos las físicas en el player
       this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
@@ -131,69 +128,92 @@
     },
 
     render: function(){
-      this.game.debug.body(this.wall0);
-      this.game.debug.body(this.wall1);
-      this.game.debug.body(this.wall2);
-      this.game.debug.body(this.wall3);
-      this.game.debug.body(this.player);
-      this.game.debug.body(this.table);
-      this.game.debug.body(this.bed);
-      this.game.debug.body(this.lampara);
-      this.game.debug.body(this.armario);
+      // this.game.debug.body(this.wall0);
+      // this.game.debug.body(this.wall1);
+      // this.game.debug.body(this.wall2);
+      // this.game.debug.body(this.wall3);
+      // this.game.debug.body(this.player);
+      // this.game.debug.body(this.table);
+      // this.game.debug.body(this.bed);
+      // this.game.debug.body(this.lampara);
+      // this.game.debug.body(this.armario);
+      // this.game.debug.cameraInfo(this.game.camera, 32, 32);
+      // this.game.debug.spriteCoords(this.player, 32, 500);
     },
 
     // Funciones para crear los objetos de la habitación
     createWalls: function(){
+      //arriba
       this.wall0 = this.game.add.sprite(0, 0, '1px');
-      this.wall0.scale.setTo(600,100);
+      this.wall0.scale.setTo(1452,100);
       this.game.physics.enable(this.wall0, Phaser.Physics.ARCADE);
       this.wall0.body.immovable = true;
 
+      //izquierda
       this.wall1 = this.game.add.sprite(0, 100, '1px');
-      this.wall1.scale.setTo(40, 636);
+      this.wall1.scale.setTo(40, 1800);
       this.game.physics.enable(this.wall1, Phaser.Physics.ARCADE);
       this.wall1.body.immovable = true;
 
-      this.wall2 = this.game.add.sprite(0, 735, '1px');
-      this.wall2.scale.setTo(600, 66);
+      //abajo
+      this.wall2 = this.game.add.sprite(0, 1650, '1px');
+      this.wall2.scale.setTo(1452, 66);
       this.game.physics.enable(this.wall2, Phaser.Physics.ARCADE);
       this.wall2.body.immovable = true;
 
-      this.wall3 = this.game.add.sprite(550, 100, '1px');
-      this.wall3.scale.setTo(50, 636);
+      //derecha
+      this.wall3 = this.game.add.sprite(1300, 100, '1px');
+      this.wall3.scale.setTo(50, 1800);
       this.game.physics.enable(this.wall3, Phaser.Physics.ARCADE);
       this.wall3.body.immovable = true;
     },
 
     createSolidObjects: function () {
       // MESA
-      this.table = this.game.add.sprite(428, 100, '1px');
-      this.table.scale.setTo(122, 263);
+      this.table = this.game.add.sprite(1002, 203, '1px');
+      this.table.scale.setTo(304, 540);
       this.game.physics.enable(this.table, Phaser.Physics.ARCADE);
       this.table.body.immovable = true;
 
+      this.actionMesa = this.game.add.sprite(1100, 652, 'exclamation');
+      this.actionMesa.alpha = 0;
+      this.actions.push(this.actionMesa);
+
+
       // CAMA
       this.bed = this.game.add.sprite(40, 100, '1px');
-      this.bed.scale.setTo(130, 180);
+      this.bed.scale.setTo(330, 420);
       this.game.physics.enable(this.bed, Phaser.Physics.ARCADE);
       this.bed.body.immovable = true;
 
       // LUZ
-      this.lampara = this.game.add.sprite(170, 100, '1px');
-      this.lampara.scale.setTo(64, 40);
+      this.lampara = this.game.add.sprite(430, 120, '1px');
+      this.lampara.scale.setTo(110, 140);
       this.game.physics.enable(this.lampara, Phaser.Physics.ARCADE);
       this.lampara.body.immovable = true;
 
+      this.actionLampara = this.game.add.sprite(470, 140, 'exclamation');
+      this.actionLampara.alpha = 0;
+      this.actions.push(this.actionLampara);
+
       // ARMARIO
-      this.armario = this.game.add.sprite(40, 420, '1px');
-      this.armario.scale.setTo(86, 170);
+      this.armario = this.game.add.sprite(26, 925, '1px');
+      this.armario.scale.setTo(280, 390);
       this.game.physics.enable(this.armario, Phaser.Physics.ARCADE);
       this.armario.body.immovable = true;
+
+      this.actionArmario = this.game.add.sprite(190, 1100, 'exclamation');
+      this.actionArmario.alpha = 0;
+      this.actions.push(this.actionArmario);
+
+
+
+
     },
 
     playerMovements: function(player) {
       if (this.game.input.mousePointer.isDown){
-        this.goto = new Phaser.Rectangle(this.game.input.x, this.game.input.y, 2, 2);
+        this.goto = new Phaser.Rectangle(this.game.input.x + this.game.camera.x, this.game.input.y + this.game.camera.y, 2, 2);
       }
 
       //if (!Phaser.Rectangle.contains(this.player.body, this.game.goto.x, this.game.goto.y)){
