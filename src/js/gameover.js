@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  function Menu() {}
+  function GameOver() {}
 
-  Menu.prototype = {
+  GameOver.prototype = {
     active: function() {
       this.game.time.events.add(Phaser.Timer.SECOND, this.createText, this);
     },
@@ -18,8 +18,8 @@
 
       //Player.
 
-      this.player1 = this.game.add.sprite(348, 474, 'toki3');
-      this.player1.scale.setTo(0.25, 0.25);
+      this.player1 = this.game.add.sprite(328, 424, 'tokigameover');
+      this.player1.scale.setTo(0.75, 0.75);
 
       //this.player.playerVelocity = 300;
       //this.player.initialPlayerFrame = 1;
@@ -34,15 +34,16 @@
       // var text = this.add.text(this.game.width * 0.5, this.game.height * 0.5 *0.5,
       //   'MENU', {font: 'Indie Flower', fill: '#111111', align: 'center', fontSize: 50
       // });
-      var text = this.game.add.text(150,100, "T.O.C.Me", {font: 'IndieFlower', fill:'#111111', fontSize: 100});
-      var text2 = this.game.add.text(160,230, "I´m a normal guy...\nOk, maybe not.", {font: 'IndieFlower', fill:'#111111', fontSize: 50});
-      var text3 = this.game.add.text(160,400, "Touch \nme to\n start!", {font: 'IndieFlower', fill:'#111111', fontSize: 50});
+      var text = this.game.add.text(90,100, "GAME OVER", {font: 'IndieFlower', fill:'#111111', fontSize: 100});
+      var text2 = this.game.add.text(110,230, "Thanks for making \nmy life a little \nmore bearable. \n\n", {font: 'IndieFlower', fill:'#111111', fontSize: 50});
+      var text3 = this.game.add.text(80,500, "Now...\n GO OUT!", {font: 'IndieFlower', fill:'#111111', fontSize: 50});
+      var text4 = this.game.add.text(100,700, "Signed:\n \t\t TOKI", {font: 'IndieFlower', fill:'#111111', fontSize: 30});
       //text.anchor.set(0.5);
 
 
       this.player1.inputEnabled = true;
       this.player1.events.onInputDown.add(function(){
-        this.game.state.start('gameover');
+        this.game.state.start('game');
       }, this);
 
 
@@ -60,5 +61,5 @@
   };
 
   window['tocme'] = window['tocme'] || {};
-  window['tocme'].Menu = Menu;
+  window['tocme'].GameOver = GameOver;
 }());

@@ -59,9 +59,11 @@
       this.load.image('mesa', 'assets/mesa.png');
       this.load.image('toki', 'assets/toki.png');
       this.load.spritesheet('toki3', 'assets/toki3.png', 348, 474);
+      this.load.spritesheet('tokigameover', 'assets/tokigameover.png', 348, 474);
       this.load.spritesheet('background', 'assets/backgroundanimation.png', 600, 800, 4);
 
       this.load.spritesheet('toki_sprite', 'assets/Toki-Sprite.png', 380, 462);
+
       this.load.image('1px', 'assets/1px.png');
       this.load.image('nexusback', 'assets/nexusback.png');
 
@@ -120,7 +122,7 @@
         this.game.scale.maxHeight = 480;
         this.game.scale.forceOrientation(true);
         this.game.scale.pageAlignHorizontally = true;
-        this.game.scale.setScreenSize(true);
+        //this.game.scale.setScreenSize(true);
       }
       this.game.state.start('preloader');
     }
