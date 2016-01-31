@@ -24,6 +24,7 @@
       this.game.world.setBounds(0, 0, 1452, 1746)
 
       this.ratio = 1452 / 600;
+      this.goto = null;
 
       //800
 
@@ -137,17 +138,15 @@
 
       this.playerMovements(this.player);
 
-      for(var i in estadosViables){
-        if (minijuego2 == estadosViables[i]){
-          //this.game.state.start(minijuego2.state_name);
-        }
+      if (logros[1] <= 0){
+        this.game.state.start(minijuego2.state_name);
       }
 
     },
 
     logrosCompletados: function(){
         for(var i = 0; i< logros.length; i++){
-          if(logros[i] != 4 && logros[i] <= 0){
+          if(logros[i] == 4 || logros[i] <= 0){
             return false;
           }
         }

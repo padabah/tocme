@@ -78,7 +78,7 @@
     },
 
     finKO : function(){
-      this.text.text = "KO";
+      this.game.state.start('game', true, false);
     },
 
     finOK : function(){
