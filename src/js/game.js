@@ -43,7 +43,6 @@
 
 
 
-
       this.player.scale.setTo(0.4, 0.4);
 
       this.player.playerVelocity = 300;
@@ -60,6 +59,8 @@
       this.player.animations.add('sides', [3, 4, 5], 10, true);
       this.player.animations.add('back', [0, 1, 2], 10, true);
 
+      this.stopMovingPlayer(this.player);
+
       this.cursors = this.game.input.keyboard.createCursorKeys();
       //this.game.input.onDown.add(this.animateSprite, this)
     },
@@ -71,6 +72,7 @@
          action.events.onInputDown.add(function functionName() {
            if(this.alpha)
             console.log(stateName)
+            this.game.state.start(stateName);
         }, action);
       }
       action.inputEnabled = true;
@@ -99,18 +101,22 @@
       }
       else if ( this.game.physics.arcade.collide(this.player, this.table) ){
         this.stopMovingPlayer(this.player);
-        this.showAction(this.actionMesa, 'mesa');
+        this.showAction(this.actionMesa, 'minijuego04');
       }
       else if ( this.game.physics.arcade.collide(this.player, this.bed) ){
         this.stopMovingPlayer(this.player);
       }
       else if ( this.game.physics.arcade.collide(this.player, this.lampara) ){
         this.stopMovingPlayer(this.player);
-        this.showAction(this.actionLampara, 'lampara');
+        this.showAction(this.actionLampara, 'minijuego03');
       }
       else if ( this.game.physics.arcade.collide(this.player, this.armario) ){
         this.stopMovingPlayer(this.player);
         this.showAction(this.actionArmario, 'armario');
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.alfombra) ){
+        this.stopMovingPlayer(this.player);
+        this.game.state.start('mini1');
       }
       else{
         console.log();
@@ -137,8 +143,9 @@
       // this.game.debug.body(this.bed);
       // this.game.debug.body(this.lampara);
       // this.game.debug.body(this.armario);
-      // this.game.debug.cameraInfo(this.game.camera, 32, 32);
-      // this.game.debug.spriteCoords(this.player, 32, 500);
+      //this.game.debug.body(this.alfombra);
+      //this.game.debug.cameraInfo(this.game.camera, 32, 32);
+      //this.game.debug.spriteCoords(this.player, 32, 500);
     },
 
     // Funciones para crear los objetos de la habitación
@@ -207,6 +214,10 @@
       this.actions.push(this.actionArmario);
 
 
+      this.alfombra = this.game.add.sprite(654, 599, '1px');
+      this.alfombra.scale.setTo(20, 20);
+      this.game.physics.enable(this.alfombra, Phaser.Physics.ARCADE);
+      this.alfombra.body.immovable = true;
 
 
     },
