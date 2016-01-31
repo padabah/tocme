@@ -7,8 +7,10 @@
 
   Game.prototype = {
     init: function(estado){
+      this.estadoAnterior = estado;
       estadosViables = Estados.actualizarSiguientes(estado);
       console.log(estadosViables);
+
     },
 
     create: function () {
@@ -41,11 +43,14 @@
       this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
 
 
-
+      this.goto = null;
 
       this.player.scale.setTo(0.4, 0.4);
 
-      this.player.playerVelocity = 300;
+      if(this.estadoAnterior){
+        this.player.playerVelocity = 300;
+      }
+      
       this.player.initialPlayerFrame = 3;
       this.player.anchor.x = 0.5;
       this.player.anchor.y = 0.5;
