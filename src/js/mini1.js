@@ -102,7 +102,7 @@ Mini1.prototype = {
         this.number1.visible = false;
         this.number1a.visible = true;
         this.arrayNumbers.push(1);
-        this.text.text = "hola leire 1 ";
+        
     }, this);
 
     this.number1a.events.onInputDown.add(function(){
@@ -115,7 +115,7 @@ Mini1.prototype = {
         this.number2.visible = false;
         this.number2a.visible = true;
         this.arrayNumbers.push(2);
-        this.text.text = "hola leire 2 ";
+
     }, this);
 
     this.number2a.events.onInputDown.add(function(){
