@@ -35,15 +35,7 @@
 
     update: function () {
       //this.game.physics.arcade.collide(this.lapices);
-      
-      var minDy = null;
-      for(var i = 0; i < this.lapices.children.length-1; i++){
-        var dyi = Math.abs(this.lapices.children[i].y - this.lapices.children[i+1].y);
-        if (!minDy || minDy > dyi){
-          minDy = dyi;
-        }
-      }
-      this.text.text = minDy;
+     
     },
 
     onDown: function () {
@@ -64,7 +56,29 @@
     },
 
     dropHandler: function(item, pointer){
-      //this.selected = item;
+      console.log(item.position);
+      var ds = [];
+      var ordenados = 0;
+      for(var i = 0; i < this.numLapices; i++){
+        var d = 0;
+        for(var j = 0; j < this.numLapices; j++){
+          if(i != j){
+            var distance = this.lapices.children[i].position.distance(this.lapices.children[j].position)
+            if (distance > 60 && distance <= 100){
+              d++;
+            }
+          }
+        }
+        if (d >= 1 && d <= 2){
+          ordenados++;
+        }
+        ds.push(d);
+      }
+      console.log(ds);
+      
+      if ( this.numLapices == ordenados){
+        this.finOK();
+      }
     }
   };
 

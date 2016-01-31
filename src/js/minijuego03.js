@@ -9,7 +9,7 @@
       var papel = this.game.add.sprite(0, 0, 'background');
       var desplegar = papel.animations.add('desplegar');
       papel.animations.play('desplegar', 8, false);
-
+      
       this.lampara = this.game.add.sprite(100, 0, 'lampara');
       this.lamparaFrame = 0;
 

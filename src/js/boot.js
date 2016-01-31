@@ -18,6 +18,14 @@
       this.load.spritesheet('relojSonando', 'assets/relojSonando.png', 192, 150, 2);
       this.load.spritesheet('lampara', 'assets/lampara.png', 373, 750, 2);
       this.load.image('lapiz', 'assets/lapiz.png');
+      this.load.image('plantilla', 'assets/plantilla.png');
+      for(var i=0; i<8; i++){
+        this.load.image('palabra_'+i, 'assets/palabra_'+i+'.png');
+      }
+      this.load.image('cajon', 'assets/cajon.png');
+      for(var i=0; i<4; i++){
+        this.load.spritesheet('calzoncillos_'+i, 'assets/calzoncillos_'+i+'.png', 150, 143, 2);
+      }
     },
 
     create: function () {
