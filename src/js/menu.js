@@ -37,7 +37,7 @@
       // var text = this.add.text(this.game.width * 0.5, this.game.height * 0.5 *0.5,
       //   'MENU', {font: 'Indie Flower', fill: '#111111', align: 'center', fontSize: 50
       // });
-      var text = this.game.add.text(180,100, "TocMe", {font: 'IndieFlower', fill:'#111111', fontSize: 100});
+      var text = this.game.add.text(150,100, "T.O.C.Me", {font: 'IndieFlower', fill:'#111111', fontSize: 100});
       var text2 = this.game.add.text(160,230, "I´m a normal guy...\nOk, maybe not.", {font: 'IndieFlower', fill:'#111111', fontSize: 50});
       var text3 = this.game.add.text(160,400, "Touch \nme to\n start!", {font: 'IndieFlower', fill:'#111111', fontSize: 50});
       //text.anchor.set(0.5);
