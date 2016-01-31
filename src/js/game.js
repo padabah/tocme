@@ -11,6 +11,14 @@
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
       this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
+
+      //Añadimos los sprites para el escenario
+      this.player_bed = this.game.add.sprite(90, 98, 'bed_player');
+      this.player_bed.scale.setTo(0.23, 0.23);
+
+      this.mesa = this.game.add.sprite(534, 80, 'mesa');
+      this.mesa.rotation = 1.55;
+      this.mesa.scale.setTo(0.50, 0.50);
       
       //Paredes
       this.createWalls();
@@ -34,14 +42,14 @@
     },
 
     update: function () {
-      if ( this.game.physics.arcade.collide(this.player, this.wall0) )
+      /*if ( this.game.physics.arcade.collide(this.player, this.wall0) )
         this.stopMovingPlayer(this.player);
       if ( this.game.physics.arcade.collide(this.player, this.wall1) )
         this.stopMovingPlayer(this.player);
       if ( this.game.physics.arcade.collide(this.player, this.wall2) )
         this.stopMovingPlayer(this.player);
       if ( this.game.physics.arcade.collide(this.player, this.wall3) )
-        this.stopMovingPlayer(this.player);
+        this.stopMovingPlayer(this.player);*/
 
       this.playerMovements(this.player);
     },
@@ -58,6 +66,7 @@
       this.game.state.start('minijuego02');
     },
 
+    // Funciones para crear los objetos de la habitación
     createWalls: function(){
       this.wall0 = this.game.add.sprite(0, 0, '1px');
       this.wall0.scale.setTo(600, 100);
@@ -78,6 +87,13 @@
       this.wall3.scale.setTo(64, 634);
       this.game.physics.enable(this.wall3, Phaser.Physics.ARCADE);
       this.wall3.body.immovable = true;
+    },
+
+    createSolidObjects: function () {
+      this.bed = this.game.add.sprite.sprite(534, 80, '1px');
+      this.bed.scale.setTo(68, 68);
+      this.game.physics.enable(this.bed, Phaser.Physics.ARCADE);
+      this.bed.body.immovable = true;
     },
 
     // Función para calcular la posición a la que tiene que ir el player
