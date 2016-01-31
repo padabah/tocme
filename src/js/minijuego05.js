@@ -32,8 +32,8 @@
 
     update: function () {
       //this.game.physics.arcade.collide(this.lapices);
-      
-      
+
+
     },
 
     onDown: function () {
@@ -51,6 +51,8 @@
 
     finOK: function(){
       this.text.text = "OK";
+      this.game.state.start('gameover');
+
     },
 
     dropHandler: function(item, pointer){

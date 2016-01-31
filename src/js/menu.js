@@ -42,7 +42,7 @@
 
       this.player1.inputEnabled = true;
       this.player1.events.onInputDown.add(function(){
-        this.game.state.start('gameover');
+        this.game.state.start('game');
       }, this);
 
 
