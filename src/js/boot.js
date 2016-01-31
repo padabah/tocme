@@ -3,14 +3,62 @@
 
   function Boot() {}
 
+  function createText() {
+
+      text = game.add.text(game.world.centerX, game.world.centerY, "- phaser -\nrocking with\ngoogle web fonts");
+      text.anchor.setTo(0.5);
+
+      text.font = 'Revalia';
+      text.fontSize = 60;
+
+      //  x0, y0 - x1, y1
+      grd = text.context.createLinearGradient(0, 0, 0, text.canvas.height);
+      grd.addColorStop(0, '#8ED6FF');
+      grd.addColorStop(1, '#004CB3');
+      text.fill = grd;
+
+      text.align = 'center';
+      text.stroke = '#000000';
+      text.strokeThickness = 2;
+      text.setShadow(5, 5, 'rgba(0,0,0,0.5)', 5);
+
+      text.inputEnabled = true;
+      text.input.enableDrag();
+
+      text.events.onInputOver.add(over, this);
+      text.events.onInputOut.add(out, this);
+
+  }
+
   Boot.prototype = {
     preload: function () {
+      // window.WebFontConfig = {
+      //
+      //   var self
+      //
+      //     //  'active' means all requested fonts have finished loading
+      //     //  We set a 1 second delay before calling 'createText'.
+      //     //  For some reason if we don't the browser cannot render the text the first time it's created.
+      //     active: function() { this.game.time.events.add(Phaser.Timer.SECOND, createText, this); },
+      //
+      //     //  The Google Fonts we want to load (specify as many as you like in the array)
+      //     google: {
+      //       families: ['Revalia']
+      //     }
+      //
+      // };
+
+
+
+      //  Load the Google WebFont Loader script
+      //this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
       this.load.image('preloader', 'assets/preloader.gif');
       this.load.image('bedroom01', 'assets/bedroom_yellow.png');
       this.load.image('bedroomFull', 'assets/bedroom_full.png');
       this.load.image('bed_player', 'assets/player_cama.png');
       this.load.image('mesa', 'assets/mesa.png');
       this.load.image('toki', 'assets/toki.png');
+      this.load.spritesheet('toki3', 'assets/toki3.png', 348, 474);
       this.load.spritesheet('background', 'assets/backgroundanimation.png', 600, 800, 4);
 
       this.load.spritesheet('toki_sprite', 'assets/Toki-Sprite.png', 380, 462);
@@ -29,6 +77,7 @@
       this.load.image('number9', 'assets/number9.png');
       this.load.image('number0', 'assets/number0.png');
       this.load.image('dot', 'assets/dot.png');
+      this.load.image('exclamation', 'assets/exclamacion.png');
       this.load.image('number1a', 'assets/number1a.png');
       this.load.image('number2a', 'assets/number2a.png');
       this.load.image('number3a', 'assets/number3a.png');

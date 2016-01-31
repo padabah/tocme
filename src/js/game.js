@@ -117,11 +117,15 @@
       }
       else if ( this.game.physics.arcade.collide(this.player, this.armario) ){
         this.stopMovingPlayer(this.player);
-        this.showAction(this.actionArmario, 'armario');
+        this.showAction(this.actionArmario, 'minijuego06');
       }
       else if ( this.game.physics.arcade.collide(this.player, this.alfombra) ){
         this.stopMovingPlayer(this.player);
         this.game.state.start('mini1');
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.kraken) ){
+        this.stopMovingPlayer(this.player);
+        this.game.state.start('minijuego05');
       }
       else{
         console.log();
@@ -149,8 +153,9 @@
       // this.game.debug.body(this.lampara);
       // this.game.debug.body(this.armario);
       //this.game.debug.body(this.alfombra);
-      //this.game.debug.cameraInfo(this.game.camera, 32, 32);
-      //this.game.debug.spriteCoords(this.player, 32, 500);
+      this.game.debug.body(this.kraken);
+      this.game.debug.cameraInfo(this.game.camera, 32, 32);
+      this.game.debug.spriteCoords(this.player, 32, 500);
     },
 
     // Funciones para crear los objetos de la habitación
@@ -187,8 +192,9 @@
       this.game.physics.enable(this.table, Phaser.Physics.ARCADE);
       this.table.body.immovable = true;
 
-      this.actionMesa = this.game.add.sprite(1100, 652, 'exclamation');
+      this.actionMesa = this.game.add.sprite(1080, 622, 'exclamation');
       this.actionMesa.alpha = 0;
+      this.actionMesa.scale.setTo(0.3, 0.3);
       this.actions.push(this.actionMesa);
 
 
@@ -204,8 +210,9 @@
       this.game.physics.enable(this.lampara, Phaser.Physics.ARCADE);
       this.lampara.body.immovable = true;
 
-      this.actionLampara = this.game.add.sprite(470, 140, 'exclamation');
+      this.actionLampara = this.game.add.sprite(450, 120, 'exclamation');
       this.actionLampara.alpha = 0;
+      this.actionLampara.scale.setTo(0.3, 0.3);
       this.actions.push(this.actionLampara);
 
       // ARMARIO
@@ -214,8 +221,9 @@
       this.game.physics.enable(this.armario, Phaser.Physics.ARCADE);
       this.armario.body.immovable = true;
 
-      this.actionArmario = this.game.add.sprite(190, 1100, 'exclamation');
+      this.actionArmario = this.game.add.sprite(180, 980, 'exclamation');
       this.actionArmario.alpha = 0;
+      this.actionArmario.scale.setTo(0.3, 0.3);
       this.actions.push(this.actionArmario);
 
 
@@ -223,6 +231,11 @@
       this.alfombra.scale.setTo(20, 20);
       this.game.physics.enable(this.alfombra, Phaser.Physics.ARCADE);
       this.alfombra.body.immovable = true;
+
+      this.kraken = this.game.add.sprite(1010, 1131, '1px');
+      this.kraken.scale.setTo(300, 500);
+      this.game.physics.enable(this.kraken, Phaser.Physics.ARCADE);
+      this.kraken.body.immovable = true;
 
 
     },
