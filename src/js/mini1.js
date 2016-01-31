@@ -244,11 +244,11 @@ Mini1.prototype = {
       this.text = this.game.add.text(100,100,"", {font: 'Indie Flower', fill:'#111111', fontSize: 50});
     this.count++;
     if (this.arraysEquals(this.arrayNumbers,[3,-1,1,4])){
-      this.game.state.start('game');
-      console.log("LOGRO PASADO!!!!!!");
+        minijuego1.passed = true;
+        this.game.state.start('game', true, false, minijuego1);
+        this.game.state.start('game');
+        console.log("LOGRO PASADO!!!!!!");
     }
-
-
   },
 
 

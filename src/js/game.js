@@ -9,6 +9,17 @@
     init: function(estado){
       estadosViables = Estados.actualizarSiguientes(estado);
       console.log(estadosViables);
+
+      // Comprobamos el siguiente estado viable
+      for(var i in estadosViables){
+        if (minijuego2 == estadosViables[i]){
+          this.game.time.events.add(Phaser.Timer.SECOND * 4, this.game.state.start(minijuego2.state_name), this);
+        } else if (minijuego1 == estadosViables[i]){
+          this.game.state.start(minijuego1.state_name);
+        } else {
+          this.initGame();
+        }
+      }
     },
 
     create: function () {
@@ -18,13 +29,31 @@
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
       this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
+    },
 
+    initGame: function () {
       //Paredes y objetos de la habitación
       this.createWalls();
       this.createSolidObjects();
 
       // Jugardor
       this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
+
+      this.actions = [];
+
+      this.actionArmario = this.game.add.sprite(60, 500, 'exclamation');
+      this.actionArmario.alpha = 0;
+      this.actions.push(this.actionArmario);
+
+      this.actionMesa = this.game.add.sprite(490, 270, 'exclamation');
+      this.actionMesa.alpha = 0;
+      this.actions.push(this.actionMesa);
+
+      this.actionLampara = this.game.add.sprite(180, 60, 'exclamation');
+      this.actionLampara.alpha = 0;
+      this.actions.push(this.actionLampara);
+
+
       this.player.scale.setTo(0.25, 0.25);
 
       this.player.playerVelocity = 300;
@@ -49,25 +78,57 @@
       this.game.state.start(minijuego2.state_name)
     },
 
-    update: function() {
-      if ( this.game.physics.arcade.collide(this.player, this.wall0) )
+    showAction: function(action, stateName){
+      action.alpha = 1;
+      // action.input.onTap.add();
+      if(!action.inputEnabled){
+         action.events.onInputDown.add(function functionName() {
+           if(this.alpha)
+            console.log(stateName)
+        }, action);
+      }
+      action.inputEnabled = true;
+    },
+
+    hideActions: function(){
+      this.actions.forEach(function(action){
+        action.alpha = 0;
+      });
+    },
+
+    update: function(){
+      if ( this.game.physics.arcade.collide(this.player, this.wall0) ){
         this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.wall1) )
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.wall1) ){
         this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.wall2) )
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.wall2) ){
         this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.wall3) )
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.wall3) ){
         this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.table) )
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.table) ){
         this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.bed) )
+        this.showAction(this.actionMesa, 'mesa');
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.bed) ){
         this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.lampara) )
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.lampara) ){
         this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.armario) )
+        this.showAction(this.actionLampara, 'lampara');
+      }
+      else if ( this.game.physics.arcade.collide(this.player, this.armario) ){
         this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.silla) )
+        this.showAction(this.actionArmario, 'armario');
+      } if ( this.game.physics.arcade.collide(this.player, this.silla) ) {
         this.stopMovingPlayer(this.player);
+      } else{
+        console.log();
+        this.hideActions();
+      }
 
       this.playerMovements(this.player);
 
@@ -138,7 +199,8 @@
 
       // ARMARIO
       this.armario = this.game.add.sprite(40, 420, '1px');
-      this.armario.scale.setTo(70, 172);
+      this.armario.scale.setTo(86, 170);
+
       this.game.physics.enable(this.armario, Phaser.Physics.ARCADE);
       this.armario.body.immovable = true;
 

@@ -82,6 +82,7 @@
     },
 
     finOK : function(){
+      minijuego2.passed = true;
       this.game.state.start('game', true, false, minijuego2);
     }
   };
