@@ -118,6 +118,10 @@
         this.stopMovingPlayer(this.player);
         this.game.state.start('mini1');
       }
+      else if ( this.game.physics.arcade.collide(this.player, this.kraken) ){
+        this.stopMovingPlayer(this.player);
+        this.game.state.start('minijuego05');
+      }
       else{
         console.log();
         this.hideActions();
@@ -144,8 +148,9 @@
       // this.game.debug.body(this.lampara);
       // this.game.debug.body(this.armario);
       //this.game.debug.body(this.alfombra);
-      //this.game.debug.cameraInfo(this.game.camera, 32, 32);
-      //this.game.debug.spriteCoords(this.player, 32, 500);
+      this.game.debug.body(this.kraken);
+      this.game.debug.cameraInfo(this.game.camera, 32, 32);
+      this.game.debug.spriteCoords(this.player, 32, 500);
     },
 
     // Funciones para crear los objetos de la habitación
@@ -221,6 +226,11 @@
       this.alfombra.scale.setTo(20, 20);
       this.game.physics.enable(this.alfombra, Phaser.Physics.ARCADE);
       this.alfombra.body.immovable = true;
+
+      this.kraken = this.game.add.sprite(1010, 1131, '1px');
+      this.kraken.scale.setTo(300, 500);
+      this.game.physics.enable(this.kraken, Phaser.Physics.ARCADE);
+      this.kraken.body.immovable = true;
 
 
     },
