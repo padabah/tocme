@@ -52,6 +52,9 @@
 
       //  Load the Google WebFont Loader script
       //this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+
+      this.load.audio('song1', 'assets/pisong.mp3');
+
       this.load.image('preloader', 'assets/preloader.gif');
       this.load.image('bedroom01', 'assets/bedroom_yellow.png');
       this.load.image('bedroomFull', 'assets/bedroom_full.png');

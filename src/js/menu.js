@@ -46,6 +46,9 @@
       }, this);
 
 
+      this.song = this.game.add.audio('song1');
+      this.song.loopFull();
+
     },
 
     update: function () {
