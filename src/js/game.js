@@ -1,9 +1,15 @@
 (function() {
   'use strict';
 
-  function Game() {}
+  function Game() {
+    
+  }
 
   Game.prototype = {
+    init: function(estado){
+      estadosViables = Estados.actualizarSiguientes(estado);
+      console.log(estadosViables);
+    },
     create: function () {
       // Variable para habilitar el movimiento del personaje
       this.canMove = true;
@@ -130,6 +136,7 @@
       this.wall3.body.immovable = true;
     }
   };
+
 
   window['tocme'] = window['tocme'] || {};
   window['tocme'].Game = Game;
