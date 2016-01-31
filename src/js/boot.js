@@ -40,6 +40,11 @@
       this.load.image('number0a', 'assets/number0a.png');
       this.load.image('dota', 'assets/dota.png');
       this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+      this.load.image('aceptar', 'assets/aceptar.png');
+      this.load.image('posponer', 'assets/posponer.png');
+      this.load.spritesheet('alarma', 'assets/alarma.png', 265, 115, 3);
+      this.load.spritesheet('relojSonando', 'assets/relojSonando.png', 192, 150, 2);
+      this.load.spritesheet('lampara', 'assets/lampara.png', 373, 750, 2);
     },
 
     create: function () {
