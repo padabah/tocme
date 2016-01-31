@@ -17,7 +17,7 @@
       this.palabras = this.game.add.physicsGroup(Phaser.Physics.ARCADE);
 
       for(var i = 0; i < this.numPalabras; i++){
-        var l = this.palabras.create(this.game.rnd.integerInRange(0, 100), this.game.rnd.integerInRange(0, 750), 'palabra_' + i);
+        var l = this.palabras.create(this.game.rnd.integerInRange(0, 100), this.game.rnd.integerInRange(0, 600), 'palabra_' + i);
         l.inputEnabled = true;
         l.input.enableDrag();
         l.events.onDragStop.add(this.dropHandler, this);

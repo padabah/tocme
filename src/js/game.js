@@ -43,7 +43,7 @@
       this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
 
 
-      this.goto = null;
+        
 
       this.player.scale.setTo(0.4, 0.4);
 
