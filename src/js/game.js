@@ -121,9 +121,14 @@
         this.stopMovingPlayer(this.player);
         this.game.state.start('mini1');
       }
-      else if ( this.game.physics.arcade.collide(this.player, this.kraken) ){
-        this.stopMovingPlayer(this.player);
-        this.game.state.start('minijuego05');
+      else if ( this.game.physics.arcade.collide(this.player, this.kraken)){
+        if (this.logrosCompletados()){
+          this.stopMovingPlayer(this.player);
+          this.game.state.start('minijuego05');
+        }
+        else{
+          console.log("Todos los logros no estan completados");
+        }
       }
       else{
         console.log();
@@ -138,6 +143,15 @@
         }
       }
 
+    },
+
+    logrosCompletados: function(){
+        for(var i = 0; i< logros.length; i++){
+          if(logros[i] != 4 && logros[i] <= 0){
+            return false;
+          }
+        }
+      return true;
     },
 
     render: function(){
