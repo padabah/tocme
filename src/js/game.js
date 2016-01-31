@@ -42,7 +42,7 @@
       this.createSolidObjects();
 
       // Jugardor
-      this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
+      this.player = this.game.add.sprite(260, 220, 'toki_sprite', 3);
 
       this.player.scale.setTo(0.4, 0.4);
 
@@ -164,9 +164,9 @@
       // this.game.debug.body(this.lampara);
       // this.game.debug.body(this.armario);
       //this.game.debug.body(this.alfombra);
-      this.game.debug.body(this.kraken);
-      this.game.debug.cameraInfo(this.game.camera, 32, 32);
-      this.game.debug.spriteCoords(this.player, 32, 500);
+      // this.game.debug.body(this.kraken);
+      // this.game.debug.cameraInfo(this.game.camera, 32, 32);
+      // this.game.debug.spriteCoords(this.player, 32, 500);
     },
 
     // Funciones para crear los objetos de la habitación
