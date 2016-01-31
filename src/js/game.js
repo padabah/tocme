@@ -43,14 +43,14 @@
       this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
 
 
-        
+
 
       this.player.scale.setTo(0.4, 0.4);
 
       if(this.estadoAnterior){
         this.player.playerVelocity = 300;
       }
-      
+
       this.player.initialPlayerFrame = 3;
       this.player.anchor.x = 0.5;
       this.player.anchor.y = 0.5;
@@ -67,7 +67,13 @@
       this.stopMovingPlayer(this.player);
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
-      //this.game.input.onDown.add(this.animateSprite, this)
+      //this.game.input.onDown.add(this.playerMovement, this)
+      this.game.input.onDown.add(function (){
+        console.log('test');
+        this.goto = new Phaser.Rectangle(this.game.input.x + this.game.camera.x, this.game.input.y + this.game.camera.y, 2, 2);
+
+      }, this)
+      //this.game.input.onUp.add(this.stopMovingPlayer, this)
     },
 
     showAction: function(action, stateName){
@@ -132,7 +138,7 @@
         this.hideActions();
       }
 
-      this.playerMovements(this.player);
+      this.playerMovement(this.player);
 
       for(var i in estadosViables){
         if (minijuego2 == estadosViables[i]){
@@ -240,9 +246,9 @@
 
     },
 
-    playerMovements: function(player) {
+    playerMovement: function(player) {
       if (this.game.input.mousePointer.isDown){
-        this.goto = new Phaser.Rectangle(this.game.input.x + this.game.camera.x, this.game.input.y + this.game.camera.y, 2, 2);
+        //this.goto = new Phaser.Rectangle(this.game.input.x + this.game.camera.x, this.game.input.y + this.game.camera.y, 2, 2);
       }
 
       //if (!Phaser.Rectangle.contains(this.player.body, this.game.goto.x, this.game.goto.y)){
