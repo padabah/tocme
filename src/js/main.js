@@ -7,6 +7,8 @@ window.addEventListener('load', function () {
   game.state.add('preloader', ns.Preloader);
   game.state.add('menu', ns.Menu);
   game.state.add('mini1', ns.Mini1);
+  game.state.add('gameover', ns.GameOver);
+
   game.state.add('minijuego02', ns.MiniJuego02);
   game.state.add('minijuego03', ns.MiniJuego03);
   game.state.add('minijuego04', ns.MiniJuego04);
