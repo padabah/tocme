@@ -63,6 +63,13 @@
         this.stopMovingPlayer(this.player);
 
       this.playerMovements(this.player);
+
+      for(var i in estadosViables){
+        if (minijuego2 == estadosViables[i]){
+          this.game.state.start(minijuego2.state_name);
+        }
+      }
+
     },
 
     render: function(){
