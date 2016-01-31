@@ -2,7 +2,7 @@
   'use strict';
 
   function Game() {
-    
+
   }
 
   Game.prototype = {
@@ -25,7 +25,7 @@
       this.mesa = this.game.add.sprite(534, 80, 'mesa');
       this.mesa.rotation = 1.55;
       this.mesa.scale.setTo(0.50, 0.50);
-      
+
       //Paredes y objetos de la habitación
       this.createWalls();
       this.createSolidObjects();
@@ -36,6 +36,8 @@
 
       this.player.playerVelocity = 300;
       this.player.initialPlayerFrame = 3;
+      this.player.anchor.x = 0.5;
+      this.player.anchor.y = 0.5;
 
       // Activamos las físicas en el player
       this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
@@ -45,22 +47,22 @@
       this.player.animations.add('back', [0, 1, 2], 10, true);
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
-      this.game.input.onDown.add(this.moveSprite, this)
+      //this.game.input.onDown.add(this.animateSprite, this)
     },
 
     update: function () {
-      if ( this.game.physics.arcade.collide(this.player, this.wall0) )
-        this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.wall1) )
-        this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.wall2) )
-        this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.wall3) )
-        this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.table) )
-        this.stopMovingPlayer(this.player);
-      if ( this.game.physics.arcade.collide(this.player, this.bed) )
-        this.stopMovingPlayer(this.player);
+      // if ( this.game.physics.arcade.collide(this.player, this.wall0) )
+      //   this.stopMovingPlayer(this.player);
+      // if ( this.game.physics.arcade.collide(this.player, this.wall1) )
+      //   this.stopMovingPlayer(this.player);
+      // if ( this.game.physics.arcade.collide(this.player, this.wall2) )
+      //   this.stopMovingPlayer(this.player);
+      // if ( this.game.physics.arcade.collide(this.player, this.wall3) )
+      //   this.stopMovingPlayer(this.player);
+      // if ( this.game.physics.arcade.collide(this.player, this.table) )
+      //   this.stopMovingPlayer(this.player);
+      // if ( this.game.physics.arcade.collide(this.player, this.bed) )
+      //   this.stopMovingPlayer(this.player);
 
       this.playerMovements(this.player);
     },
@@ -119,8 +121,24 @@
       this.lampara.body.immovable = true;
     },
 
+    playerMovements: function(player) {
+      if (this.game.input.mousePointer.isDown){
+        this.goto = new Phaser.Rectangle(this.game.input.x, this.game.input.y, 2, 2);
+        console.log(this.goto);
+      }
+
+      //if (!Phaser.Rectangle.contains(this.player.body, this.game.goto.x, this.game.goto.y)){
+      if (this.goto && !Phaser.Rectangle.intersects(this.player.body, this.goto)){
+        this.game.physics.arcade.moveToXY(player, this.goto.x, this.goto.y, 400);
+        this.animateSprite(this.goto);
+      }
+      else{
+          this.stopMovingPlayer(player);
+      }
+    },
+
     // Función para calcular la posición a la que tiene que ir el player
-    moveSprite: function (pointer) {
+    animateSprite: function (pointer) {
       // Almacenamos la nueva posición del jugador
       this.player.newPositionX = parseInt(pointer.x);
       this.player.newPositionY = parseInt(pointer.y);
@@ -129,93 +147,14 @@
       this.player.movingDown = ( this.player.newPositionY > this.player.body.y ? true : false );
       this.player.movingRight = ( this.player.newPositionX > this.player.body.x ? true : false );
 
-      // Variables de control para ver si se está moviendo
-      this.player.stopMovingY = false;
-      this.player.stopMovingX = false;
-      this.player.playerMoving = true;
-
       // Declaramos la siguiente animación
       this.player.nextAnimation = ( this.player.movingDown ? 'sides' : 'back' );
-    },
-
-    // Función para controlar el movimiento del player
-    playerMovements: function(player) {
-      // Almacenamos la posición actual del player
-      var playerX = parseInt(player.body.position.x);
-      var playerY = parseInt(player.body.position.y);
-
-      // Comprobamos si se tiene que parar o seguir
-      if ( player.stopMovingX && player.stopMovingY && player.playerMoving ) {
-        this.stopMovingPlayer(player);
-      } else {
-        if ( playerX == player.newPositionX ) {
-          // Comprobamos si ya ha llegado a la posición de la X
-          player.stopMovingX = true;
-          player.body.velocity.x = 0;
-        } else if ( playerY == player.newPositionY ) {
-          // Comprobamos si ya ha llegado a la posición de la Y
-          player.stopMovingY = true;
-          player.body.velocity.y = 0;
-        } else if ( player.playerMoving ) {
-          // Seguimos moviendo al player
-
-          // Comprobamos la dirección de la X
-          if (player.newPositionX < player.position.x) {
-            // LEFT
-
-            // Comprobamos si nos hemos pasado
-            if (player.movingRight) {
-              player.stopMovingX = true;
-              player.body.velocity.x = 0;
-            } else
-              player.body.velocity.x = -player.playerVelocity;
-          } else {
-            // RIGHT
-
-            if (player.movingRight)
-              player.body.velocity.x = player.playerVelocity;
-            else {
-              player.stopMovingX = true;
-              player.body.velocity.x = 0;
-            }
-          }
-
-          // Comprobamos la dirección de la Y
-          if (player.newPositionY < player.position.y) {
-            // UP
-
-            // Comprobamos si nos hemos pasado
-            if (player.movingDown) {
-              player.stopMovingY = true;
-              player.body.velocity.y = 0;
-            } else
-              player.body.velocity.y = -player.playerVelocity;
-          } else if (player.newPositionY > player.position.y) {
-            // DOWN
-
-            if(player.movingDown)
-              player.body.velocity.y = player.playerVelocity;
-            else {
-              player.stopMovingY = true;
-              player.body.velocity.y = 0;
-            }
-          }
-
-          // Activamos la animación
-          player.animations.play(player.nextAnimation);
-        }
-      }
+      this.player.animations.play(this.player.nextAnimation);
     },
 
     // Función para terminar el movimiento del player
     stopMovingPlayer: function (player) {
-      player.playerMoving = false;
-      player.stopMovingX = true;
-      player.stopMovingY = true;
-
-      player.frame = player.initialPlayerFrame;
-      player.body.velocity.x = 0;
-      player.body.velocity.y = 0;
+      player.body.velocity.setTo(0, 0);
       player.animations.stop();
     }
   };
