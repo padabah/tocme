@@ -19,18 +19,19 @@
       this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
 
       //Añadimos los sprites para el escenario
-      this.player_bed = this.game.add.sprite(90, 98, 'bed_player');
+      this.player_bed = this.game.add.sprite(68, 98, 'bed_player');
       this.player_bed.scale.setTo(0.23, 0.23);
 
       this.mesa = this.game.add.sprite(534, 80, 'mesa');
       this.mesa.rotation = 1.55;
       this.mesa.scale.setTo(0.50, 0.50);
       
-      //Paredes
+      //Paredes y objetos de la habitación
       this.createWalls();
+      this.createSolidObjects();
 
       // Jugardor
-      this.player = this.game.add.sprite(90, 303, 'toki_sprite', 3);
+      this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
       this.player.scale.setTo(0.25, 0.25);
 
       this.player.playerVelocity = 300;
@@ -48,14 +49,18 @@
     },
 
     update: function () {
-      /*if ( this.game.physics.arcade.collide(this.player, this.wall0) )
+      if ( this.game.physics.arcade.collide(this.player, this.wall0) )
         this.stopMovingPlayer(this.player);
       if ( this.game.physics.arcade.collide(this.player, this.wall1) )
         this.stopMovingPlayer(this.player);
       if ( this.game.physics.arcade.collide(this.player, this.wall2) )
         this.stopMovingPlayer(this.player);
       if ( this.game.physics.arcade.collide(this.player, this.wall3) )
-        this.stopMovingPlayer(this.player);*/
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.table) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.bed) )
+        this.stopMovingPlayer(this.player);
 
       this.playerMovements(this.player);
     },
@@ -65,11 +70,10 @@
       this.game.debug.body(this.wall1);
       this.game.debug.body(this.wall2);
       this.game.debug.body(this.wall3);
-      this.game.debug.body(this.player);*/
-    },
-
-    onInputDown: function () {
-      this.game.state.start('minijuego02');
+      this.game.debug.body(this.player);
+      this.game.debug.body(this.table);
+      this.game.debug.body(this.bed);
+      this.game.debug.body(this.lampara);*/
     },
 
     // Funciones para crear los objetos de la habitación
@@ -96,10 +100,23 @@
     },
 
     createSolidObjects: function () {
-      this.bed = this.game.add.sprite.sprite(534, 80, '1px');
-      this.bed.scale.setTo(68, 68);
+      // MESA
+      this.table = this.game.add.sprite(400, 100, '1px');
+      this.table.scale.setTo(140, 325);
+      this.game.physics.enable(this.table, Phaser.Physics.ARCADE);
+      this.table.body.immovable = true;
+
+      // CAMA
+      this.bed = this.game.add.sprite(68, 100, '1px');
+      this.bed.scale.setTo(188, 254);
       this.game.physics.enable(this.bed, Phaser.Physics.ARCADE);
       this.bed.body.immovable = true;
+
+      // LUZ
+      this.lampara = this.game.add.sprite(256, 100, '1px');
+      this.lampara.scale.setTo(64, 64);
+      this.game.physics.enable(this.lampara, Phaser.Physics.ARCADE);
+      this.lampara.body.immovable = true;
     },
 
     // Función para calcular la posición a la que tiene que ir el player
