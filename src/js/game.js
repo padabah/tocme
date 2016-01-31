@@ -44,6 +44,13 @@
       this.game.physics.arcade.collide(this.player, this.wall3);
 
       this.playerMovements(this.player);
+
+      for(var i in estadosViables){
+        if (minijuego2 == estadosViables[i]){
+          this.game.state.start(minijuego2.state_name);
+        }
+      }
+
     },
 
     render: function(){
