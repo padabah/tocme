@@ -27,17 +27,17 @@ Mini1.prototype = {
 
     this.player = this.game.add.sprite(90, 303, 'toki');
     this.player.scale.setTo(this.playerScale);
-    this.game.physics.p2.enable(this.player, true);
+    //this.game.physics.p2.enable(this.player, true);
     this.cursors = this.game.input.keyboard.createCursorKeys();
     this.game.time.events.add(Phaser.Timer.SECOND, this.createText, this);
 
 
     //Caracteristicas player
 
-    this.player.body.setZeroDamping();
-    this.player.body.fixedRotation = true;
-    this.player.body.setCircle(28);
-    this.player.body.offset.setTo(0, 1000);
+    //this.player.body.setZeroDamping();
+    //this.player.body.fixedRotation = true;
+    //this.player.body.setCircle(28);
+    //this.player.body.offset.setTo(0, 1000);
 
     //Creación de botones.
 
