@@ -1,9 +1,15 @@
 (function() {
   'use strict';
 
-  function Game() {}
+  function Game() {
+    
+  }
 
   Game.prototype = {
+    init: function(estado){
+      estadosViables = Estados.actualizarSiguientes(estado);
+      console.log(estadosViables);
+    },
     create: function () {
       // Variable para habilitar el movimiento del personaje
       this.canMove = true;
@@ -55,11 +61,11 @@
     },
 
     render: function(){
-      this.game.debug.body(this.wall0);
+      /*this.game.debug.body(this.wall0);
       this.game.debug.body(this.wall1);
       this.game.debug.body(this.wall2);
       this.game.debug.body(this.wall3);
-      this.game.debug.body(this.player);
+      this.game.debug.body(this.player);*/
     },
 
     onInputDown: function () {
@@ -196,6 +202,7 @@
       player.animations.stop();
     }
   };
+
 
   window['tocme'] = window['tocme'] || {};
   window['tocme'].Game = Game;

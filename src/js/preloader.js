@@ -27,7 +27,7 @@
 
     update: function () {
       // if (!!this.ready) {
-        this.game.state.start('minijuego03');
+        this.game.state.start('game');
       // }
     },
 

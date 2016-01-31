@@ -21,7 +21,7 @@
     },
 
     onDown: function () {
-      this.game.state.start('minijuego03');
+      
     }
   };
 
