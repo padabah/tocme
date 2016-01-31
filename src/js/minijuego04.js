@@ -12,7 +12,7 @@
 
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-      
+
       this.numLapices = 7;
       this.lapices = this.game.add.physicsGroup(Phaser.Physics.ARCADE);
 
@@ -35,7 +35,7 @@
 
     update: function () {
       //this.game.physics.arcade.collide(this.lapices);
-     
+
     },
 
     onDown: function () {
@@ -53,6 +53,7 @@
 
     finOK: function(){
       this.text.text = "OK";
+      this.game.state.start('game');
     },
 
     dropHandler: function(item, pointer){
@@ -75,7 +76,7 @@
         ds.push(d);
       }
       console.log(ds);
-      
+
       if ( this.numLapices == ordenados){
         this.finOK();
       }

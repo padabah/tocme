@@ -77,6 +77,7 @@
       this.load.image('number9', 'assets/number9.png');
       this.load.image('number0', 'assets/number0.png');
       this.load.image('dot', 'assets/dot.png');
+      this.load.image('exclamation', 'assets/exclamacion.png');
       this.load.image('number1a', 'assets/number1a.png');
       this.load.image('number2a', 'assets/number2a.png');
       this.load.image('number3a', 'assets/number3a.png');

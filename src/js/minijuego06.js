@@ -24,7 +24,7 @@
         l.events.onDragStop.add(this.dropHandler, this);
         l.events.onInputDown.add(this.listenerCalzoncillo, this);
       }
-      
+
 
       this.calzoncillos.setAll('body.collideWorldBounds', true);
       this.calzoncillos.setAll('body.bounce.x', 1);
@@ -35,9 +35,9 @@
 
     update: function () {
       //this.game.physics.arcade.collide(this.lapices);
-      
-      
-      
+
+
+
     },
 
     onDown: function () {
@@ -55,6 +55,7 @@
 
     finOK: function(){
       this.text.text = "OK";
+      this.game.state.start('game');
     },
 
     dropHandler: function(item, pointer){
