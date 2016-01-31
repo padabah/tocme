@@ -82,7 +82,7 @@
     },
 
     finOK : function(){
-      this.game.state.start('game', true, false, minijuego2);
+      this.game.state.start('game', true, false, 1);
     }
   };
 

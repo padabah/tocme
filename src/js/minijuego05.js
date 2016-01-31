@@ -50,7 +50,7 @@
     },
 
     finOK: function(){
-      this.text.text = "OK";
+      this.game.state.start('game', true, false, 4);
     },
 
     dropHandler: function(item, pointer){

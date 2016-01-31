@@ -11,6 +11,8 @@ minijuego4.next_states = [minijuego3];
 var listaCompleta = [minijuego1, minijuego2, minijuego3, minijuego4];
 var estadosViables = null;
 
+var logros = [0, 0, 0, 0, 0, 0];
+
 function Estados() {
 
 }

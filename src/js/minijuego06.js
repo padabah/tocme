@@ -16,7 +16,6 @@
       this.numCalzoncillos = 20;
       this.calzoncillos = this.game.add.physicsGroup(Phaser.Physics.ARCADE);
 
-
       for(var i = 0; i < this.numCalzoncillos; i++){
         var l = this.calzoncillos.create(this.game.rnd.integerInRange(100, 300), this.game.rnd.integerInRange(150, 350), 'calzoncillos_' + this.game.rnd.integerInRange(0, 3));
         l.inputEnabled = true;
@@ -24,7 +23,6 @@
         l.events.onDragStop.add(this.dropHandler, this);
         l.events.onInputDown.add(this.listenerCalzoncillo, this);
       }
-
 
       this.calzoncillos.setAll('body.collideWorldBounds', true);
       this.calzoncillos.setAll('body.bounce.x', 1);
@@ -55,7 +53,7 @@
 
     finOK: function(){
       this.text.text = "OK";
-      this.game.state.start('game');
+      this.game.state.start('game', true, false, 5);
     },
 
     dropHandler: function(item, pointer){

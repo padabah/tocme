@@ -8,9 +8,10 @@
   Game.prototype = {
     init: function(estado){
       this.estadoAnterior = estado;
-      estadosViables = Estados.actualizarSiguientes(estado);
-      console.log(estadosViables);
-
+      if(estado != undefined) {
+        logros[estado] += 1;
+      }
+      console.log(logros);
     },
 
     create: function () {
@@ -42,14 +43,11 @@
       // Jugardor
       this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
 
-
-        
-
       this.player.scale.setTo(0.4, 0.4);
 
-      if(this.estadoAnterior){
-        this.player.playerVelocity = 300;
-      }
+
+      this.player.playerVelocity = 300;
+      
       
       this.player.initialPlayerFrame = 3;
       this.player.anchor.x = 0.5;
