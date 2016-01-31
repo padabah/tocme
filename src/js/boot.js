@@ -17,6 +17,7 @@
       this.load.spritesheet('alarma', 'assets/alarma.png', 265, 115, 3);
       this.load.spritesheet('relojSonando', 'assets/relojSonando.png', 192, 150, 2);
       this.load.spritesheet('lampara', 'assets/lampara.png', 373, 750, 2);
+      this.load.image('lapiz', 'assets/lapiz.png');
     },
 
     create: function () {

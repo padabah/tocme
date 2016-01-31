@@ -41,11 +41,11 @@
     },
 
     render: function(){
-      this.game.debug.body(this.wall0);
+      /*this.game.debug.body(this.wall0);
       this.game.debug.body(this.wall1);
       this.game.debug.body(this.wall2);
       this.game.debug.body(this.wall3);
-      this.game.debug.body(this.player);
+      this.game.debug.body(this.player);*/
     },
 
     onInputDown: function () {
