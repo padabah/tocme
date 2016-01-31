@@ -10,6 +10,7 @@
       estadosViables = Estados.actualizarSiguientes(estado);
       console.log(estadosViables);
     },
+
     create: function () {
       // Variable para habilitar el movimiento del personaje
       this.canMove = true;
@@ -19,12 +20,12 @@
       this.game.add.tileSprite(0, 0, 600, 800, 'bedroom01');
 
       //Añadimos los sprites para el escenario
-      this.player_bed = this.game.add.sprite(68, 98, 'bed_player');
+      /*this.player_bed = this.game.add.sprite(68, 98, 'bed_player');
       this.player_bed.scale.setTo(0.23, 0.23);
 
       this.mesa = this.game.add.sprite(534, 80, 'mesa');
       this.mesa.rotation = 1.55;
-      this.mesa.scale.setTo(0.50, 0.50);
+      this.mesa.scale.setTo(0.50, 0.50);*/
 
       //Paredes y objetos de la habitación
       this.createWalls();
@@ -50,43 +51,56 @@
       //this.game.input.onDown.add(this.animateSprite, this)
     },
 
-    update: function () {
-      // if ( this.game.physics.arcade.collide(this.player, this.wall0) )
-      //   this.stopMovingPlayer(this.player);
-      // if ( this.game.physics.arcade.collide(this.player, this.wall1) )
-      //   this.stopMovingPlayer(this.player);
-      // if ( this.game.physics.arcade.collide(this.player, this.wall2) )
-      //   this.stopMovingPlayer(this.player);
-      // if ( this.game.physics.arcade.collide(this.player, this.wall3) )
-      //   this.stopMovingPlayer(this.player);
-      // if ( this.game.physics.arcade.collide(this.player, this.table) )
-      //   this.stopMovingPlayer(this.player);
-      // if ( this.game.physics.arcade.collide(this.player, this.bed) )
-      //   this.stopMovingPlayer(this.player);
+    update: function(){
+      
+      if ( this.game.physics.arcade.collide(this.player, this.wall0) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.wall1) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.wall2) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.wall3) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.table) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.bed) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.lampara) )
+        this.stopMovingPlayer(this.player);
+      if ( this.game.physics.arcade.collide(this.player, this.armario) )
+        this.stopMovingPlayer(this.player);
 
       this.playerMovements(this.player);
+
+      for(var i in estadosViables){
+        if (minijuego2 == estadosViables[i]){
+          //this.game.state.start(minijuego2.state_name);
+        }
+      }
+
     },
 
     render: function(){
-      /*this.game.debug.body(this.wall0);
+      this.game.debug.body(this.wall0);
       this.game.debug.body(this.wall1);
       this.game.debug.body(this.wall2);
       this.game.debug.body(this.wall3);
       this.game.debug.body(this.player);
       this.game.debug.body(this.table);
       this.game.debug.body(this.bed);
-      this.game.debug.body(this.lampara);*/
+      this.game.debug.body(this.lampara);
+      this.game.debug.body(this.armario);
     },
 
     // Funciones para crear los objetos de la habitación
     createWalls: function(){
       this.wall0 = this.game.add.sprite(0, 0, '1px');
-      this.wall0.scale.setTo(600, 100);
+      this.wall0.scale.setTo(600,100);
       this.game.physics.enable(this.wall0, Phaser.Physics.ARCADE);
       this.wall0.body.immovable = true;
 
       this.wall1 = this.game.add.sprite(0, 100, '1px');
-      this.wall1.scale.setTo(68, 634);
+      this.wall1.scale.setTo(40, 636);
       this.game.physics.enable(this.wall1, Phaser.Physics.ARCADE);
       this.wall1.body.immovable = true;
 
@@ -95,30 +109,36 @@
       this.game.physics.enable(this.wall2, Phaser.Physics.ARCADE);
       this.wall2.body.immovable = true;
 
-      this.wall3 = this.game.add.sprite(538, 100, '1px');
-      this.wall3.scale.setTo(64, 634);
+      this.wall3 = this.game.add.sprite(550, 100, '1px');
+      this.wall3.scale.setTo(50, 636);
       this.game.physics.enable(this.wall3, Phaser.Physics.ARCADE);
       this.wall3.body.immovable = true;
     },
 
     createSolidObjects: function () {
       // MESA
-      this.table = this.game.add.sprite(400, 100, '1px');
-      this.table.scale.setTo(140, 325);
+      this.table = this.game.add.sprite(428, 100, '1px');
+      this.table.scale.setTo(122, 263);
       this.game.physics.enable(this.table, Phaser.Physics.ARCADE);
       this.table.body.immovable = true;
 
       // CAMA
-      this.bed = this.game.add.sprite(68, 100, '1px');
-      this.bed.scale.setTo(188, 254);
+      this.bed = this.game.add.sprite(40, 100, '1px');
+      this.bed.scale.setTo(130, 180);
       this.game.physics.enable(this.bed, Phaser.Physics.ARCADE);
       this.bed.body.immovable = true;
 
       // LUZ
-      this.lampara = this.game.add.sprite(256, 100, '1px');
-      this.lampara.scale.setTo(64, 64);
+      this.lampara = this.game.add.sprite(170, 100, '1px');
+      this.lampara.scale.setTo(64, 40);
       this.game.physics.enable(this.lampara, Phaser.Physics.ARCADE);
       this.lampara.body.immovable = true;
+
+      // ARMARIO
+      this.armario = this.game.add.sprite(40, 420, '1px');
+      this.armario.scale.setTo(86, 194);
+      this.game.physics.enable(this.armario, Phaser.Physics.ARCADE);
+      this.armario.body.immovable = true;
     },
 
     playerMovements: function(player) {
