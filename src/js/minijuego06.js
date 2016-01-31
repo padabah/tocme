@@ -29,6 +29,8 @@
       this.calzoncillos.setAll('body.bounce.y', 1);
 
       this.text = this.game.add.text(50, 700, '', { fill: '#000' });
+      this.game.audios.papel3.play();
+
     },
 
     update: function () {
@@ -54,6 +56,8 @@
     finOK: function(){
       this.text.text = "OK";
       this.game.state.start('game', true, false, 5);
+      this.game.audios.bien2.play();
+
     },
 
     dropHandler: function(item, pointer){
@@ -66,9 +70,15 @@
         }
       }
       var desordenados = this.numCalzoncillos - numCalzoncillosOrdenados;
-      this.text.text = 'Solo faltan ' + desordenados + ' calzoncillos por ordenar';
+      this.text.text = 'Just ' + desordenados + ' pants left to sort :S';
       if (desordenados == 0){
         this.finOK();
+      }
+      else{
+        //var rnd = new Phaser.RandomDataGenerator()
+        //var n = rnd.integerInRange(1,3);
+        var n = Math.floor((Math.random() * 8) + 1);
+        if(n < 4) this.game.audios['nervios'+n].play();
       }
     },
 

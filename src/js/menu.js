@@ -16,6 +16,9 @@
       var desplegar = papel.animations.add('desplegar');
       papel.animations.play('desplegar', 3, false);
 
+      this.game.audios.papel3 = this.game.add.audio('papel3');
+      this.game.audios.papel3.play();
+
       //Player.
 
       this.player1 = this.game.add.sprite(348, 474, 'toki3');
@@ -47,6 +50,7 @@
 
 
       this.song = this.game.add.audio('song1');
+      this.song.volume = 0.1;
       this.song.loopFull();
 
     },

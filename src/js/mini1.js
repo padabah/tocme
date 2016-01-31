@@ -12,6 +12,8 @@ Mini1.prototype = {
   active: function() { this.game.time.events.add(Phaser.Timer.SECOND, this.createText, this); },
   create: function () {
 
+    this.game.audios.papel3.play();
+
     this.count = 1;
 
     this.game.physics.startSystem(Phaser.Physics.P2JS);
@@ -102,7 +104,7 @@ Mini1.prototype = {
         this.number1.visible = false;
         this.number1a.visible = true;
         this.arrayNumbers.push(1);
-        
+
     }, this);
 
     this.number1a.events.onInputDown.add(function(){
@@ -246,6 +248,7 @@ Mini1.prototype = {
     if (this.arraysEquals(this.arrayNumbers,[3,-1,1,4])){
       this.game.state.start('game', true, false, 0);
       console.log("LOGRO PASADO!!!!!!");
+      this.game.audios.bien1.play();
     }
 
 

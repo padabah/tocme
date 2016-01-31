@@ -9,7 +9,7 @@
       var papel = this.game.add.sprite(0, 0, 'background');
       var desplegar = papel.animations.add('desplegar');
       papel.animations.play('desplegar', 8, false);
-      
+
       this.lampara = this.game.add.sprite(100, 0, 'lampara');
       this.lamparaFrame = 0;
 
@@ -19,6 +19,8 @@
       this.finalCounter = 10;
 
       this.text = this.game.add.text(250, 16, '', { fill: '#ffffff' });
+      this.game.audios.papel3.play();
+
     },
 
     update: function () {
@@ -36,6 +38,7 @@
         ||(this.lampara.frame == 1 && this.isInside(this.game.input._x, this.game.input._y, 217, 245, 415, 440))){
         this.lampara.frame = (this.lampara.frame + 1) % 2;
         this.counter++;
+        this.game.audios.lampara1.play();
       }
     },
 
@@ -50,6 +53,8 @@
     finOK : function(){
       //this.text.text = "OK";
       this.game.state.start('game', true, false, 2);
+      this.game.audios.bien2.play();
+
     }
   };
 

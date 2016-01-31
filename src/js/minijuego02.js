@@ -31,6 +31,12 @@
       this.numFrames = 3;
       this.nowMinutes = new Date();
       this.seleccionado = false;
+      this.game.audios.papel3.play();
+      this.game.audios.alarma1.volume = 0.6;
+      this.game.audios.alarma1.loopFull();
+      this.game.audios.movil1.loopFull();
+      //this.song.loopFull();
+
     },
 
     update: function () {
@@ -82,10 +88,14 @@
 
     finKO : function(){
       this.game.state.start('game', true, false);
+      this.game.audios.alarma1.stop();
+      this.game.audios.movil1.stop();
     },
 
     finOK : function(){
       this.game.state.start('game', true, false, 1);
+      this.game.audios.alarma1.stop();
+      this.game.audios.movil1.stop();
     }
   };
 

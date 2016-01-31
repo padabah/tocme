@@ -23,6 +23,7 @@
       this.game.add.tileSprite(0, 0, 1452, 1746, 'bedroomFull');
       this.game.world.setBounds(0, 0, 1452, 1746)
 
+
       this.ratio = 1452 / 600;
       this.goto = null;
 
@@ -42,12 +43,13 @@
       this.createSolidObjects();
 
       // Jugardor
-      this.player = this.game.add.sprite(260, 120, 'toki_sprite', 3);
+      this.player = this.game.add.sprite(260, 175, 'toki_sprite', 3);
       this.player.scale.setTo(0.4, 0.4);
 
       if(this.estadoAnterior){
         this.player.playerVelocity = 300;
       }
+
 
       this.player.initialPlayerFrame = 3;
       this.player.anchor.x = 0.5;
@@ -128,6 +130,8 @@
         this.game.state.start('mini1');
       }
       else if ( this.game.physics.arcade.collide(this.player, this.kraken)){
+        this.game.audios.kraken3.play();
+
         if (this.logrosCompletados()){
           this.stopMovingPlayer(this.player);
           this.game.state.start('minijuego05');
@@ -144,7 +148,7 @@
       this.playerMovement(this.player);
 
       if (logros[1] <= 0){
-        this.game.state.start(minijuego2.state_name);
+        this.game.state.start('minijuego02');
       }
 
     },

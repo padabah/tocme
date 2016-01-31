@@ -33,6 +33,8 @@
       this.lapices.setAll('body.bounce.y', 1);
 
       this.text = this.game.add.text(50, 700, '', { fill: '#000' });
+      this.game.audios.papel3.play();
+
     },
 
     update: function () {
@@ -56,6 +58,8 @@
     finOK: function(){
       this.text.text = "OK";
       this.game.state.start('game', true, false, 3  );
+      this.game.audios.bien1.play();
+
     },
 
     dropHandler: function(item, pointer){
@@ -70,7 +74,7 @@
         for(var j = 0; j < this.numLapices; j++){
           if(i != j){
             var distance = this.lapices.children[i].position.distance(this.lapices.children[j].position)
-            if (distance >= 0 && distance <= 70){
+            if (distance >= 20 && distance <=100){
               d++;
             }
           }
@@ -93,11 +97,11 @@
         this.finOK();
       }
 
-      if (sum < (this.limitOK*0.2)) this.text.text  ="NOOOOOO, estoy muy nervioso!!!!!";
-      else if (sum < (this.limitOK*0.4)) this.text.text  ="Bueno, estoy un poco nervioso.";
-      else if (sum < (this.limitOK*0.6)) this.text.text  ="Vamos mejorando.";
-      else if (sum < (this.limitOK*0.8)) this.text.text  ="Uy, casi!";
-      else if (sum> this.limitOK) this.text.text  ="NOOOOOOOOO, están muy cercaaaaaaaa.";
+      if (sum < (this.limitOK*0.2)) this.text.text  ="NOOOOOO, iiii'm really nervous!!";
+      else if (sum < (this.limitOK*0.4)) this.text.text  ="Take it easy";
+      else if (sum < (this.limitOK*0.6)) this.text.text  ="we aaare doing better";
+      else if (sum < (this.limitOK*0.8)) this.text.text  ="Almost done";
+      else if (sum> this.limitOK) this.text.text  ="NOOOOOOOOO, they are soooooo close";
     }
   };
 
