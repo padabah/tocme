@@ -33,6 +33,8 @@
       this.lapices.setAll('body.bounce.y', 1);
 
       this.text = this.game.add.text(50, 700, '', { fill: '#000' });
+      this.game.audios.papel3.play();
+
     },
 
     update: function () {
@@ -56,6 +58,8 @@
     finOK: function(){
       this.text.text = "OK";
       this.game.state.start('game', true, false, 3  );
+      this.game.audios.bien1.play();
+
     },
 
     dropHandler: function(item, pointer){

@@ -28,12 +28,14 @@
       this.palabras.setAll('body.bounce.y', 1);
 
       this.text = this.game.add.text(50, 700, '', { fill: '#000' });
+      this.game.audios.papel3.play();
+
     },
 
     update: function () {
       //this.game.physics.arcade.collide(this.lapices);
-      
-      
+
+
     },
 
     onDown: function () {
@@ -51,6 +53,8 @@
 
     finOK: function(){
       this.game.state.start('game', true, false, 4);
+      this.game.audios.bien1.play();
+
     },
 
     dropHandler: function(item, pointer){

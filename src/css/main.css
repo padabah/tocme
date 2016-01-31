@@ -7,3 +7,9 @@
 h1{
   font-family: 'IndieFlower';
 }
+
+
+html,body{
+  margin:0;
+  background: #000;
+}

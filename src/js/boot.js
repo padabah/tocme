@@ -53,7 +53,17 @@
       //  Load the Google WebFont Loader script
       //this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
-      this.load.audio('song1', 'assets/pisong.mp3');
+      this.load.audio('papel3', 'assets/audio/papel3.ogg');
+      this.load.audio('alarma1', 'assets/audio/alarma1.ogg');
+      this.load.audio('movil1', 'assets/audio/movil1.ogg');
+      this.load.audio('lampara1', 'assets/audio/lampara1.ogg');
+      this.load.audio('kraken3', 'assets/audio/kraken3.ogg');
+      this.load.audio('bien1', 'assets/audio/bien1.ogg');
+      this.load.audio('bien2', 'assets/audio/bien2.ogg');
+      this.load.audio('nervios1', 'assets/audio/nervios1.ogg');
+      this.load.audio('nervios2', 'assets/audio/nervios2.ogg');
+      this.load.audio('nervios3', 'assets/audio/nervios3.ogg');
+
 
       this.load.image('preloader', 'assets/preloader.gif');
       this.load.image('bedroom01', 'assets/bedroom_yellow.png');
@@ -123,7 +133,7 @@
         this.game.scale.maxHeight = 480;
         this.game.scale.forceOrientation(true);
         this.game.scale.pageAlignHorizontally = true;
-        this.game.scale.setScreenSize(true);
+        //this.game.scale.setScreenSize(true);
       }
       this.game.state.start('preloader');
     }
