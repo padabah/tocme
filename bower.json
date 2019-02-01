@@ -1,10 +1,8 @@
 {
   "name": "tocme",
   "version": "0.0.0",
-  "authors": [
-    ""
-  ],
+  "authors": [""],
   "dependencies": {
-    "phaser-official": "latest"
+    "phaser-official": "^2.0.0"
   }
 }

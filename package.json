@@ -8,7 +8,7 @@
   "devDependencies": {
     "bower": "*",
     "del": "*",
-    "gulp": "*",
+    "gulp": "^3.0.0",
     "gulp-concat": "*",
     "gulp-connect": "*",
     "gulp-download": "*",
